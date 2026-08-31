@@ -1,49 +1,115 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-low: #fff1e5;
+  --color-on-secondary: #ffffff;
+  --color-outline-variant: #d3c4af;
+  --color-on-background: #201b13;
+  --color-on-tertiary-container: #001f26;
+  --color-surface-variant: #efe0cf;
+  --color-on-surface: #201b13;
+  --color-surface-dim: #e4d7cd;
+  --color-on-error: #ffffff;
+  --color-tertiary: #00687a;
+  --color-secondary-fixed: #dee0ff;
+  --color-on-secondary-fixed: #010f5c;
+  --color-on-primary-fixed: #271900;
+  --color-secondary-fixed-dim: #bbc3ff;
+  --color-primary-fixed: #ffdea6;
+  --color-secondary-container: #dee0ff;
+  --color-surface-container: #faebd9;
+  --color-primary-fixed-dim: #f8bd43;
+  --color-primary-container: #ffdea6;
+  --color-error-container: #ffdad6;
+  --color-inverse-on-surface: #faeedf;
+  --color-error: #ba1a1a;
+  --color-surface-container-lowest: #ffffff;
+  --color-secondary: #4f5a9e;
+  --color-surface: #fff8f3;
+  --color-surface-container-high: #f4e5d4;
+  --color-on-secondary-fixed-variant: #344188;
+  --color-on-surface-variant: #4f4535;
+  --color-surface-tint: #7c5800;
+  --color-inverse-primary: #ffe6bd;
+  --color-inverse-surface: #353027;
+  --color-surface-bright: #fff8f3;
+  --color-on-primary: #ffffff;
+  --color-on-secondary-container: #010f5c;
+  --color-on-primary-container: #271900;
+  --color-on-primary-fixed-variant: #5e4200;
+  --color-background: #fff8f3;
+  --color-tertiary-container: #adecff;
+  --color-tertiary-fixed-dim: #4ed7f6;
+  --color-on-error-container: #410002;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-fixed: #adecff;
+  --color-on-tertiary-fixed: #001f26;
+  --color-surface-container-highest: #efe0cf;
+  --color-on-tertiary-fixed-variant: #004e5d;
+  --color-primary: #7c5800;
+  --color-outline: #817564;
+  --radius: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+  --spacing-unit: 8px;
+  --spacing-margin-mobile: 24px;
+  --spacing-margin-desktop: 80px;
+  --spacing-gutter: 32px;
+  --spacing-container-max: 1440px;
+  --spacing-section-gap: 160px;
+  --font-body-md: var(--font-hanken);
+  --font-headline-lg: var(--font-syne);
+  --font-label-sm: var(--font-hanken);
+  --font-display-xl: var(--font-syne);
+  --font-body-lg: var(--font-hanken);
+  --font-headline-md: var(--font-syne);
+  --font-headline-lg-mobile: var(--font-syne);
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-headline-lg: 64px;
+  --text-headline-lg--line-height: 72px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--letter-spacing: 0.1em;
+  --text-label-sm--font-weight: 600;
+  --text-display-xl: 120px;
+  --text-display-xl--line-height: 110px;
+  --text-display-xl--letter-spacing: -0.04em;
+  --text-display-xl--font-weight: 800;
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 32px;
+  --text-body-lg--font-weight: 400;
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 40px;
+  --text-headline-md--font-weight: 600;
+  --text-headline-lg-mobile: 40px;
+  --text-headline-lg-mobile--line-height: 48px;
+  --text-headline-lg-mobile--font-weight: 700;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+
+
+
+.organic-shape-1 {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  background: linear-gradient(135deg, var(--color-primary-container), var(--color-surface-container-highest));
+  opacity: 0.4;
+  filter: blur(40px);
 }
 
-html {
-  height: 100%;
+.ambient-shadow {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

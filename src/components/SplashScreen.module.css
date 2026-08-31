@@ -1,0 +1,79 @@
+.welcomeScreen {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85")
+    center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  color: white;
+  animation: splashSequence 3s ease forwards;
+  pointer-events: none !important; /* CRITICAL: Never block clicks */
+}
+
+.welcomeBox {
+  text-align: center;
+  animation: welcomeText 1.4s ease forwards;
+}
+
+.welcomeLogo {
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--color-primary-container);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--color-primary);
+  font-family: var(--font-headline-md);
+}
+
+.welcomeBox h1 {
+  font-size: clamp(35px, 7vw, 75px);
+  letter-spacing: 5px;
+  margin-bottom: 15px;
+}
+
+.welcomeBox p {
+  color: #ddd;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-family: var(--font-body-md);
+}
+
+.welcomeLine {
+  width: 80px;
+  height: 2px;
+  background: var(--color-primary-container);
+  margin: 25px auto;
+}
+
+@keyframes welcomeText {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashSequence {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.hideWelcome {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

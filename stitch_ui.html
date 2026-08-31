@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sepione Ceramic - Earth. Refined.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#201b13",
+                        "on-secondary": "#1c2970",
+                        "outline-variant": "#4f4535",
+                        "on-background": "#ece1d3",
+                        "on-tertiary-container": "#005f71",
+                        "surface-variant": "#3a342b",
+                        "on-surface": "#ece1d3",
+                        "surface-dim": "#17130b",
+                        "on-error": "#690005",
+                        "tertiary": "#c2f1ff",
+                        "secondary-fixed": "#dee0ff",
+                        "on-secondary-fixed": "#010f5c",
+                        "on-primary-fixed": "#271900",
+                        "secondary-fixed-dim": "#bbc3ff",
+                        "primary-fixed": "#ffdea6",
+                        "secondary-container": "#37438a",
+                        "surface-container": "#241f17",
+                        "primary-fixed-dim": "#f8bd43",
+                        "primary-container": "#ffc349",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#353027",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#120e07",
+                        "secondary": "#bbc3ff",
+                        "surface": "#17130b",
+                        "surface-container-high": "#2f2920",
+                        "on-secondary-fixed-variant": "#344188",
+                        "on-surface-variant": "#d3c4af",
+                        "surface-tint": "#f8bd43",
+                        "inverse-primary": "#7c5800",
+                        "inverse-surface": "#ece1d3",
+                        "surface-bright": "#3e382f",
+                        "on-primary": "#412d00",
+                        "on-secondary-container": "#a8b4ff",
+                        "on-primary-container": "#725100",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "background": "#17130b",
+                        "tertiary-container": "#56ddfd",
+                        "tertiary-fixed-dim": "#4ed7f6",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#003640",
+                        "tertiary-fixed": "#adecff",
+                        "on-tertiary-fixed": "#001f26",
+                        "surface-container-highest": "#3a342b",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary": "#ffe6bd",
+                        "outline": "#9c8f7b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px",
+                        "gutter": "32px",
+                        "container-max": "1440px",
+                        "section-gap": "160px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Syne"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "display-xl": ["Syne"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Syne"],
+                        "headline-lg-mobile": ["Syne"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl": ["120px", { "lineHeight": "110px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["40px", { "lineHeight": "48px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            overflow-x: hidden;
+        }
+        
+        .organic-shape-1 {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background: linear-gradient(135deg, theme('colors.primary-container'), theme('colors.surface-container-high'));
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .ambient-shadow {
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Ambient Background Shapes -->
+<div class="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] organic-shape-1 -z-10 animate-[spin_60s_linear_infinite]"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] organic-shape-1 -z-10 animate-[spin_40s_linear_infinite_reverse]"></div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/20">
+<div class="flex justify-between items-center px-margin-desktop py-6 w-full max-w-container-max mx-auto hidden md:flex">
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">
+                Sepione Ceramic
+            </div>
+<div class="flex space-x-gutter items-center font-body-md text-body-md uppercase tracking-[0.2em]">
+<a class="text-primary border-b border-primary pb-1 hover:opacity-80 transition-all duration-300" href="#">Collections</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:opacity-80" href="#">Gallery</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:opacity-80" href="#">Studio</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:opacity-80" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<a class="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-all duration-300 flex items-center gap-2" href="#">
+<span class="font-body-md text-body-md uppercase tracking-[0.2em]">Shop Now</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+</a>
+</div>
+</div>
+</nav>
+<main class="pt-[140px] pb-section-gap px-margin-desktop max-w-container-max mx-auto space-y-section-gap">
+<!-- Hero Section -->
+<section class="grid grid-cols-12 gap-gutter items-center min-h-[716px]">
+<div class="col-span-12 md:col-span-7 z-10">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-8 relative">
+<span class="block text-primary-container relative z-10 mix-blend-difference">Earth.</span>
+<span class="block pl-12 text-on-surface">Refined.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12 border-l-2 border-primary-container pl-6">
+                    Avant-garde ceramics crafted for spaces that demand presence. Where raw clay meets monumental scale.
+                </p>
+<button class="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-8 py-4 rounded-full hover:scale-105 transition-transform duration-300 flex items-center gap-2 w-max">
+                    Explore Collections
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="col-span-12 md:col-span-5 relative">
+<div class="aspect-4/5 rounded-[3rem] overflow-hidden ambient-shadow relative">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A striking, high-contrast close-up of a massive, sculptural ceramic vessel against a stark black background. The vessel features deep textures resembling charred wood and smooth, reflective glazed sections in deep purple and gold. Minimalist avant-garde lighting highlights the tactile nature of the object." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-ff7HjD_LxLldy6_b2YiAIQs22u2Lil9Bno0fCEwD98_S_3QLq4B61ZM3edCVPVR4r6oOwniOwCWjOmpwUBNxuYcrDcbdpQNyvMDJNR5MGlgek7PZrC5o5sPgpdZj1tUfLEUEloSkzoohHrZ67l_cKUGN9sP3gQuhWidOpMN53-qUTNqgGUzPG_yVOSOwVELxBRSSS5TJ5rXhxXyjRCtz-OK0v_3cgCNYuELao2PWo-2QHop0JTo2')"></div>
+</div>
+<!-- Floating Element -->
+<div class="absolute -bottom-12 -left-12 bg-surface-container p-6 rounded-lg backdrop-blur-md border border-white/5 ambient-shadow w-64 hidden md:block">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Featured Finish</div>
+<div class="font-headline-md text-headline-md text-primary-container">Oxidized Copper</div>
+</div>
+</div>
+</section>
+<!-- 12x12 Collection (Asymmetric Bento) -->
+<section>
+<div class="flex items-end justify-between mb-16">
+<div>
+<span class="font-label-sm text-label-sm text-primary-container uppercase tracking-widest block mb-4">Standard Format</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">12x12 Collection</h2>
+</div>
+<a class="font-label-sm text-label-sm text-on-surface hover:text-primary-container transition-colors uppercase flex items-center gap-2 hidden md:flex" href="#">
+                    View All Standard <span class="material-symbols-outlined text-lg">east</span>
+</a>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Large Feature Tile -->
+<div class="col-span-12 md:col-span-8 group cursor-pointer">
+<div class="aspect-video rounded-4xl overflow-hidden relative ambient-shadow mb-6">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A luxurious interior shot showcasing a wall clad in 12x12 'Slate &amp; Gold' ceramic tiles. The tiles feature a deep charcoal base with subtle, irregular veins of shimmering gold. The lighting is moody and architectural, emphasizing the matte and gloss contrast. The setting implies a high-end commercial or residential space." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLBYHjD-crLPScVREUzOpm87nJ3cTS08LdS_EdBSrKlpjRfoOEQZVp8G7zw-mLkS8R7EFMZL61BQEP8c0rCoJKvKKdDxxgfJG6UPXqbqm3Q_Bito_NU7NNjkkXhRQDDKQt0oA3VK4Xgaf4jMuQmrfXxJgWRhhjn03g3Wn0r0CJPBZwvP1eRZjx2fU8mCtlFqUzUWtZnEEmTT8HjcpwssxmMFfLYUy0OqewOEGiLkTBIK5VXG2u6-d5')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+<!-- Tag -->
+<div class="absolute top-6 left-6 bg-[#525EA7] text-white font-label-sm text-label-sm px-4 py-2 rounded-full uppercase tracking-widest">Best Seller</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors">Slate &amp; Gold</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Deep charcoal accented with kiln-fired golden veins.</p>
+</div>
+<!-- Stacked Secondary Tiles -->
+<div class="col-span-12 md:col-span-4 flex flex-col gap-gutter">
+<div class="group cursor-pointer flex-1">
+<div class="h-48 rounded-4xl overflow-hidden relative ambient-shadow mb-4">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A close up of a 12x12 ceramic tile named 'Liquid Charcoal'. The texture resembles a flowing, dark viscous liquid frozen in time, with a very subtle, almost imperceptible sheen against a matte black background. Minimalist lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDC8mwMY7gSyHgovtg-2ju8Hn3sdIjiJovSanGHzQBEGsECiY7MmfaNJf0K4eWw83AAzSAgNczMrtq2bqcK0ALXhXej_Wi9R8--z2b1zm3aTA9kM15WD3T-Xl5keao_NVTsxk9EqLUu3esk-R9T8wMXolCbHD7GG5nPM9h-5C-zlkWv43dWlQo9OYeoH9D6-74UrAYBS1EoE_5ldNUgChK1iOeIYeUz3uIux5IoVQJHPXEgsXFAdo7Z')"></div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors text-2xl">Liquid Charcoal</h3>
+</div>
+<div class="group cursor-pointer flex-1">
+<div class="h-48 rounded-4xl overflow-hidden relative ambient-shadow mb-4">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" data-alt="A close up of a 12x12 ceramic tile named 'Zen Ridges'. The tile features raised, parallel vertical lines in a soft, dark earthy gray. The lighting highlights the tactile, ribbed texture of the ceramic surface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApTUQfB-bS8M2TQVdPPX-3DIFO1KLnBYTLZ8EkueoPNS9FpcBbM291kRcs2x6EaCbgS870dbMbz4Kzujjo12qTsEUTvihut_9qARuxNQTiLBK1jGPxcmXgCXPZ8tv3W5wnEBXD198EOtp3L462Ou5kbT-dVoQ_GEyhRp24DFAG2pDTkZUq2aR4tey1ZHY1PmhOTgr_UvLNrKeR0SXtiA7hGelQk0YsR892O5tX4QegjIB7j6BvckVs')"></div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-container transition-colors text-2xl">Zen Ridges</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- 16x16 Collection (Expansive Horizontal Flow) -->
+<section class="bg-surface-container-low -mx-margin-desktop px-margin-desktop py-section-gap">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-20 max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm text-primary-container uppercase tracking-widest block mb-4">Monumental Scale</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">16x16 Collection</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Expansive surfaces designed to minimize grout lines and maximize visual impact. For spaces that require unbroken flow.</p>
+</div>
+<div class="flex gap-gutter overflow-x-auto pb-12 snap-x hide-scrollbar">
+<!-- Card 1 -->
+<div class="min-w-[80vw] md:min-w-[45vw] lg:min-w-[30vw] snap-center group cursor-pointer">
+<div class="aspect-square rounded-[3rem] overflow-hidden relative ambient-shadow mb-6">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-1000 group-hover:scale-105" data-alt="A large 16x16 ceramic tile panel named 'Midnight Onyx'. The surface is a deep, impenetrable black with very subtle, cloudy variations in darkness, resembling a night sky. High gloss finish reflecting minimal light in a dark gallery setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBlhMKKimBwWK0URnASjzk4XMsNWIZOEdYdhWgv_Z85d733CTyzUawSyx_UqsOXHH6c1oLgdIrZ7PvIjPz42uO7HLMQ2jDxMeIveg9iMJ9zIDYOanaln0ZeTv4RJI652tClBtwblB1ei3nScHnqqau-47D_htfw4VYu0doWCrwOYJQ_42vzD7lsbKreqj85cEVOMaj2U1Q4s3IEf0i76lTjBDZAtF6a9FJt2-GbVSotmm1b4oeMj3V')"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Midnight Onyx</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">High-Gloss Deep Black</p>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0 duration-300">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[80vw] md:min-w-[45vw] lg:min-w-[30vw] snap-center group cursor-pointer mt-0 md:mt-12">
+<div class="aspect-square rounded-[3rem] overflow-hidden relative ambient-shadow mb-6">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-1000 group-hover:scale-105" data-alt="A large 16x16 ceramic tile panel named 'Oxidized Copper'. The surface features dramatic, organic swirls of deep verdigris green, burnt orange, and tarnished dark bronze. The texture appears rough and natural, like aged metal. Dark gallery lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlF65MC21cQLH4rvBoTeWUwMhCCYXZaT5Ysz9NImodrV0_oLiXih4vmL1jh6rPSlE_YYL-3Tz5IHJgT0sRrdFYrK2sKrsUlqV5pZYwMc3eeNNYmX2mixQO8q8fjw839jQbVx9F6xmqTBlvsET0-iGuhfirvY-bws_vY_wsjv3vqylOyVmAVnPhPrbfGkc2VtnSHS-k8rz7nQq6UrAy-sWFin5ILHedfZyjK7zkuxJIt35038s1Cxxn')"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Oxidized Copper</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Reactive Glaze Finish</p>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0 duration-300">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[80vw] md:min-w-[45vw] lg:min-w-[30vw] snap-center group cursor-pointer mt-0 md:mt-24">
+<div class="aspect-square rounded-[3rem] overflow-hidden relative ambient-shadow mb-6">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-1000 group-hover:scale-105" data-alt="A large 16x16 ceramic tile panel named 'Raw Travertine'. The tile mimics natural stone with a porous, irregular surface in shades of deep, warm gray and subtle beige. The texture is prominent, catching light to emphasize depth." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2O5_O1WlfBmBXHCRtq-lWj4ZeTeoot-iOCGL53KvE1duZBkyn8DOpfhtnNlLPZ9hogeJj4k2Hp6wiyK1jHKQKUT6i_QXslWSumeiOZyAsxasNz3UL0vmXa1m_j2WRtUcFnewR2pBUAZ3Tdl36oXm9bC3G_4KNHvn3LfBOxYlmouxgNMtSsL_EerZEkJCjq9DvExy4ioPHYTk1zukNa2O1IADqUscfXg_e6_RVrA3VjcrzoZAtFcUd')"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Raw Travertine</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Textured Matte Stone</p>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity -translate-x-4 group-hover:translate-x-0 duration-300">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Studio Contact Section -->
+<section class="grid grid-cols-12 gap-gutter items-center border-t border-outline-variant/30 pt-20">
+<div class="col-span-12 md:col-span-5">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Visit the Studio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">Experience the scale and texture of our collections in person. Private viewings available by appointment.</p>
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-container mt-1">location_on</span>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Location</div>
+<div class="font-body-md text-body-md text-on-surface">124 Avant-Garde Lane<br/>New York, NY 10012</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-container mt-1">call</span>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Phone</div>
+<div class="font-body-md text-body-md text-on-surface">+1 (555) 019-8273</div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary-container mt-1">mail</span>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Email</div>
+<div class="font-body-md text-body-md text-on-surface">hello@sepione.com</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 md:col-start-7">
+<div class="aspect-4/3 rounded-[3rem] overflow-hidden ambient-shadow">
+<div class="bg-cover bg-center w-full h-full" data-alt="A minimalist, high-end ceramics studio and gallery space. The walls are a dark, moody gray. Large ceramic art pieces and sample tiles are displayed on sleek, low-profile pedestals. Soft, dramatic spotlighting illuminates the textures of the ceramics. The atmosphere is quiet, contemplative, and luxurious." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNNQlbiHaphpx1kZpVNZCCU-NfHuDQpNEiS1VDfSOJst1uhLk0J0BaFjK0jVELDlAYWA6jziTs17KpCD0Dv1-hwgDegmF_PBqTbkim6xwJmMLDrK4OeIRBXra_xxLMCJ8mE6Bs3HBUBA56NDKajFqbyR6NtLWbwbXfpnXCpAvKidrAcuflx9vC1Ck1FM05h2O2fZ7fyn2uJR9ViwH5DEDu3Tt-lLzy9grlQZruFEcVbrvALdnHxEFy')"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap border-t border-outline-variant/30 bg-surface-container-lowest dark:bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-primary mb-6 md:mb-0 md:col-span-2">
+                Sepione Ceramic
+            </div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+</div>
+<div class="md:col-span-4 mt-12 font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+                © 2024 Sepione Ceramic. Handcrafted Excellence.
+            </div>
+</div>
+</footer>
+<!-- Floating WhatsApp Button -->
+<a class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full ambient-shadow hover:scale-110 transition-transform duration-300 flex items-center justify-center" href="#">
+<!-- SVG for WhatsApp since Material Icons doesn't have brand logos reliably -->
+<svg fill="currentColor" height="28" viewbox="0 0 16 16" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"></path>
+</svg>
+</a>
+<style>
+        /* Utility for hiding scrollbar in horizontal scroll containers while keeping functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>
