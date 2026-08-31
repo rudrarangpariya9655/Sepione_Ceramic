@@ -91,10 +91,10 @@ export default async function Home() {
                 <Link href="/tiles/12x12" className="block no-underline">
                   <div className="aspect-[16/9] rounded-[2rem] overflow-hidden relative ambient-shadow mb-6">
                     <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" 
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
                       style={{ backgroundImage: `url('${getThumbnailUrl(tiles12x12[0].cloudinary_secure_url)}')` }}
                     ></div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-black/20 transition-colors duration-500"></div>
                     {/* Tag */}
                     <div className="absolute top-6 left-6 bg-[#525EA7] text-white font-label-sm text-label-sm px-4 py-2 rounded-full uppercase tracking-widest">Newest Arrival</div>
                   </div>
@@ -110,7 +110,7 @@ export default async function Home() {
                 <Link key={i} href="/tiles/12x12" className="group cursor-pointer flex-1 block no-underline">
                   <div className="h-48 rounded-[2rem] overflow-hidden relative ambient-shadow mb-4">
                     <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" 
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
                       style={{ backgroundImage: `url('${getThumbnailUrl(tile.cloudinary_secure_url)}')` }}
                     ></div>
                   </div>
@@ -142,10 +142,10 @@ export default async function Home() {
                 <Link href="/tiles/16x16" className="block no-underline">
                   <div className="aspect-[16/9] rounded-[2rem] overflow-hidden relative ambient-shadow mb-6">
                     <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" 
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
                       style={{ backgroundImage: `url('${getThumbnailUrl(tiles16x16[0].cloudinary_secure_url)}')` }}
                     ></div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-black/20 transition-colors duration-500"></div>
                     {/* Tag */}
                     <div className="absolute top-6 left-6 bg-[#525EA7] text-white font-label-sm text-label-sm px-4 py-2 rounded-full uppercase tracking-widest">Newest Arrival</div>
                   </div>
@@ -161,7 +161,7 @@ export default async function Home() {
                 <Link key={i} href="/tiles/16x16" className="group cursor-pointer flex-1 block no-underline">
                   <div className="h-48 rounded-[2rem] overflow-hidden relative ambient-shadow mb-4">
                     <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700 group-hover:scale-105" 
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
                       style={{ backgroundImage: `url('${getThumbnailUrl(tile.cloudinary_secure_url)}')` }}
                     ></div>
                   </div>

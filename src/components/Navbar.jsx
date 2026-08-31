@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -8,14 +9,14 @@ export default function Navbar() {
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/20">
-      <div className="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6 w-full max-w-container-max mx-auto">
-        <div className="font-headline-md text-headline-md font-bold text-primary tracking-tighter">
-          Sepione Ceramic
-        </div>
+    <nav className="fixed top-6 left-0 right-0 mx-auto w-[95%] max-w-container-max z-50 bg-surface/90 backdrop-blur-xl border border-outline-variant/30 shadow-2xl rounded-full transition-all duration-700 animate-nav">
+      <div className="flex justify-between items-center px-6 md:px-10 py-4 w-full h-full relative">
+        <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="Sepione Ceramic Logo" width={220} height={48} className="object-contain h-12 w-auto scale-[3.5] origin-left" priority />
+        </Link>
         
-        {/* Desktop Links */}
-        <div className="hidden md:flex space-x-gutter items-center font-body-md text-body-md uppercase tracking-[0.2em]">
+        {/* Desktop Links (Perfectly Centered) */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-gutter items-center font-body-md text-body-md uppercase tracking-[0.2em] whitespace-nowrap">
           <Link href="/" className="text-primary border-b border-primary pb-1 hover:opacity-80 transition-all duration-300">Home</Link>
           <Link href="/tiles/12x12" className="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:opacity-80">12x12</Link>
           <Link href="/tiles/16x16" className="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:opacity-80">16x16</Link>
@@ -68,7 +69,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-surface-container-high border-b border-white/10 shadow-2xl flex flex-col p-6 gap-6">
+        <div className="md:hidden absolute top-full left-0 w-full bg-surface-container-high border-b border-white/10 shadow-2xl flex flex-col p-6 gap-6 rounded-b-[2rem] animate-dropdown">
           <Link href="/" className="font-body-lg text-primary uppercase tracking-[0.2em]" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
           <Link href="/tiles/12x12" className="font-body-lg text-on-surface-variant uppercase tracking-[0.2em]" onClick={() => setIsMobileMenuOpen(false)}>12x12</Link>
           <Link href="/tiles/16x16" className="font-body-lg text-on-surface-variant uppercase tracking-[0.2em]" onClick={() => setIsMobileMenuOpen(false)}>16x16</Link>

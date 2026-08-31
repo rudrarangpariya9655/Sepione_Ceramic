@@ -1,79 +1,68 @@
 .welcomeScreen {
   position: fixed;
   inset: 0;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85")
-    center/cover;
+  background: #111111;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  color: white;
-  animation: splashSequence 3s ease forwards;
-  pointer-events: none !important; /* CRITICAL: Never block clicks */
+  animation: splashFadeOut 0.6s ease 2.5s forwards;
+  pointer-events: none !important;
 }
 
-.welcomeBox {
-  text-align: center;
-  animation: welcomeText 1.4s ease forwards;
-}
-
-.welcomeLogo {
-  width: 100px;
-  height: 100px;
-  border: 2px solid var(--color-primary-container);
-  border-radius: 50%;
+.loadingContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 25px;
-  font-size: 30px;
-  font-weight: bold;
-  color: var(--color-primary);
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.liquidText {
+  position: relative;
   font-family: var(--font-headline-md);
+  font-size: clamp(60px, 15vw, 150px);
+  font-weight: 800;
+  color: #333333;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 2px;
 }
 
-.welcomeBox h1 {
-  font-size: clamp(35px, 7vw, 75px);
-  letter-spacing: 5px;
-  margin-bottom: 15px;
+.liquidText::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='%23ffffff' d='M0,100 C250,200 250,0 500,100 C750,200 750,0 1000,100 L1000,1000 L0,1000 Z'/%3E%3C/svg%3E") repeat-x;
+  background-size: 200% 1.5em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fillUpWave 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.welcomeBox p {
-  color: #ddd;
-  letter-spacing: 4px;
-  font-size: 14px;
+.loadingProgress {
+  color: #ffffff;
   font-family: var(--font-body-md);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 15px;
 }
 
-.welcomeLine {
-  width: 80px;
-  height: 2px;
-  background: var(--color-primary-container);
-  margin: 25px auto;
-}
-
-@keyframes welcomeText {
+@keyframes fillUpWave {
   0% {
-    opacity: 0;
-    transform: translateY(40px);
+    background-position: 0% 1.1em;
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    background-position: 400% -0.2em; /* Moves horizontally to create wave effect, vertically to fill */
   }
 }
 
-@keyframes splashSequence {
-  0% { opacity: 0; }
-  15% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-.hideWelcome {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+@keyframes splashFadeOut {
+  to { 
+    opacity: 0; 
+    visibility: hidden; 
+  }
 }
