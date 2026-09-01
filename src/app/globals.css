@@ -80,6 +80,10 @@
   --text-display-xl--line-height: 110px;
   --text-display-xl--letter-spacing: -0.04em;
   --text-display-xl--font-weight: 800;
+  --text-display-xl-mobile: 56px;
+  --text-display-xl-mobile--line-height: 52px;
+  --text-display-xl-mobile--letter-spacing: -0.04em;
+  --text-display-xl-mobile--font-weight: 800;
   --text-body-lg: 20px;
   --text-body-lg--line-height: 32px;
   --text-body-lg--font-weight: 400;

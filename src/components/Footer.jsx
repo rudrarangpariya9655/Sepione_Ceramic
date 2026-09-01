@@ -24,8 +24,10 @@ export default function Footer() {
             </li>
             <li>
               <strong>Address:</strong><br/>
-              Pawadiyare Canal,<br/>
-              Morbi, Gujarat, India
+              Survey no. 595 P/2,<br/>
+              Nr. Pavadiyari Canal, At. Shapar,<br/>
+              Jetpar Road, Morbi, <br/>
+              (Gujarat) 363 642. India<br/>
             </li>
           </ul>
         </div>

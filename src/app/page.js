@@ -43,9 +43,9 @@ export default async function Home() {
         {/* Hero Section */}
         <section className="flex flex-col md:grid md:grid-cols-12 gap-gutter items-center min-h-0 md:min-h-[716px]">
           <div className="col-span-12 md:col-span-7 z-10">
-            <h1 className="font-display-xl text-6xl md:text-display-xl text-on-surface mb-8 relative leading-tight">
+            <h1 className="font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface mb-8 relative leading-tight">
               <span className="block text-primary-container relative z-10 mix-blend-difference">Earth.</span>
-              <span className="block pl-12 text-on-surface">Refined.</span>
+              <span className="block md:pl-12 text-on-surface">Refined.</span>
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12 border-l-2 border-primary-container pl-6">
               Avant-garde ceramics crafted for spaces that demand presence. Where raw clay meets monumental scale.
