@@ -199,7 +199,7 @@ export default async function Home() {
                 <span className="text-primary mt-1 font-bold">✉</span>
                 <div>
                   <div className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Email</div>
-                  <div className="font-body-md text-body-md text-on-surface">sepion@gmail.com</div>
+                  <div className="font-body-md text-body-md text-on-surface">Info@sepionetile.com</div>
                 </div>
               </div>
             </div>

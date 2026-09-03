@@ -17,7 +17,7 @@ export default function Footer() {
           <h3 className={styles.sectionTitle}>Contact Us</h3>
           <ul className={styles.contactList}>
             <li>
-              <strong>Email:</strong> <a href="mailto:sepion@gmail.com">sepion@gmail.com</a>
+              <strong>Email:</strong> <a href="mailto:Info@sepionetile.com">Info@sepionetile.com</a>
             </li>
             <li>
               <strong>Phone:</strong> <a href="tel:+919099950773">+91 90999 50773</a>, <a href="tel:+919099950771">+91 90999 50771</a>

@@ -9,7 +9,7 @@ export default function SplashScreen() {
 
   useEffect(() => {
     let start = Date.now();
-    const duration = 2000; // 2 seconds fill up
+    const duration = 4000; // 4 seconds fill up
     
     const tick = () => {
       let elapsed = Date.now() - start;
@@ -21,10 +21,10 @@ export default function SplashScreen() {
     };
     requestAnimationFrame(tick);
 
-    // Give it time to fill (2s), pause (0.5s), then fade out (0.6s)
+    // Give it time to fill (4s), pause (0.6s), then fade out (0.6s)
     const timer = setTimeout(() => {
       setShow(false);
-    }, 3200); 
+    }, 5200); 
     
     return () => clearTimeout(timer);
   }, []);
@@ -34,7 +34,10 @@ export default function SplashScreen() {
   return (
     <div className={styles.welcomeScreen}>
       <div className={styles.loadingContainer}>
-        <h1 className={styles.liquidText} data-text="Sepione">Sepione</h1>
+        <div className={styles.liquidLogo}>
+          <img src="/logo.png" alt="Sepione" className={styles.logoBase} />
+          <img src="/logo.png" alt="Sepione" className={styles.logoFill} />
+        </div>
         <p className={styles.loadingProgress}>loading... {progress}%</p>
       </div>
     </div>

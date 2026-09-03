@@ -10,9 +10,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-6 left-0 right-0 mx-auto w-[95%] max-w-container-max z-50 bg-surface/90 backdrop-blur-xl border border-outline-variant/30 shadow-2xl rounded-full transition-all duration-700 animate-nav">
-      <div className="flex justify-between items-center px-6 md:px-10 py-4 w-full h-full relative">
+      <div className="flex justify-between items-center px-6 md:px-10 py-2 md:py-3 w-full h-full relative">
         <Link href="/" className="flex items-center">
-          <Image src="/logo.png" alt="Sepione Ceramic Logo" width={220} height={48} className="object-contain h-10 md:h-12 w-auto scale-[2.5] origin-left" priority />
+          <Image src="/logo-nav.png" alt="Sepione Ceramic Logo" width={250} height={60} className="object-contain h-8 md:h-10 w-auto scale-[2.5] origin-left" priority />
         </Link>
         
         {/* Desktop Links (Perfectly Centered) */}
