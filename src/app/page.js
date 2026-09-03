@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getThumbnailUrl } from "@/lib/cloudinary-utils";
-import Navbar from "@/components/Navbar";
 import { supabaseClient } from '@/lib/supabase/client';
 
 export const revalidate = 60; // Cache for 60 seconds
@@ -13,7 +12,7 @@ export default async function Home() {
     .eq('upload_status', 'SUCCESS')
     .order('created_at', { ascending: false })
     .limit(1);
-    
+
   const heroTile = heroData && heroData.length > 0 ? heroData[0].cloudinary_secure_url : null;
 
   // Fetch top 3 for 12x12
@@ -36,10 +35,8 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-
       <main className="pt-[140px] pb-section-gap px-6 md:px-margin-desktop max-w-container-max mx-auto space-y-section-gap overflow-x-hidden">
-        
+
         {/* Hero Section */}
         <section className="flex flex-col md:grid md:grid-cols-12 gap-gutter items-center min-h-0 md:min-h-[716px]">
           <div className="col-span-12 md:col-span-7 z-10">
@@ -57,9 +54,9 @@ export default async function Home() {
           </div>
           <div className="col-span-12 md:col-span-5 relative mt-12 md:mt-0">
             <div className="aspect-[4/5] rounded-[3rem] overflow-hidden ambient-shadow relative">
-              <div 
-                className="bg-cover bg-center w-full h-full absolute inset-0 transition-opacity duration-1000" 
-                style={{ 
+              <div
+                className="bg-cover bg-center w-full h-full absolute inset-0 transition-opacity duration-1000"
+                style={{
                   backgroundImage: `url('${heroTile || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%25" height="100%25"%3E%3Crect width="100%25" height="100%25" fill="%232d2a26"/%3E%3C/svg%3E'}')`,
                   opacity: 1
                 }}
@@ -69,6 +66,44 @@ export default async function Home() {
             <div className="absolute -bottom-12 -left-12 bg-surface-container p-6 rounded-lg backdrop-blur-md border border-white/5 ambient-shadow w-64 hidden md:block">
               <div className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Featured Finish</div>
               <div className="font-headline-md text-headline-md text-primary">Rock Style</div>
+            </div>
+          </div>
+        </section>
+
+        {/* About Teaser Section */}
+        <section className="py-12 md:py-20 border-t border-outline-variant/30">
+          <div className="grid md:grid-cols-12 gap-gutter items-center">
+            <div className="col-span-12 md:col-span-7">
+              <h2 className="font-headline-lg text-4xl md:text-headline-lg text-on-surface mb-6">About Sepione Tiles</h2>
+              <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 border-l-2 border-primary-container pl-6">
+                Since 2015, Sepione Tiles has been one of India's leading 
+                manufacturers and exporters of heavy-duty 300x300mm and 400x400mm outdoor 
+                tiles, blending Italian-inspired design with export-grade quality standards.
+              </p>
+              <Link href="/about" className="bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase px-8 py-4 rounded-full hover:scale-105 transition-transform duration-300 flex items-center gap-2 w-max text-black no-underline">
+                Explore More
+                <span>→</span>
+              </Link>
+            </div>
+            <div className="col-span-12 md:col-span-5 mt-12 md:mt-0">
+              <div className="grid grid-cols-2 gap-8 text-center md:text-left bg-surface-container p-8 rounded-3xl border border-outline-variant/30 ambient-shadow">
+                <div>
+                  <div className="font-display-xl text-3xl md:text-4xl text-primary mb-2">250+</div>
+                  <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Happy Clients</div>
+                </div>
+                <div>
+                  <div className="font-display-xl text-3xl md:text-4xl text-primary mb-2">12</div>
+                  <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Export Countries</div>
+                </div>
+                <div>
+                  <div className="font-display-xl text-3xl md:text-4xl text-primary mb-2">1000+</div>
+                  <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Product Designs</div>
+                </div>
+                <div>
+                  <div className="font-display-xl text-3xl md:text-4xl text-primary mb-2">8</div>
+                  <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Years Experience</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -90,8 +125,8 @@ export default async function Home() {
               <div className="col-span-12 md:col-span-8 group cursor-pointer relative">
                 <Link href="/tiles/12x12" className="block no-underline">
                   <div className="aspect-[16/9] rounded-[2rem] overflow-hidden relative ambient-shadow mb-6">
-                    <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
+                    <div
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700"
                       style={{ backgroundImage: `url('${getThumbnailUrl(tiles12x12[0].cloudinary_secure_url)}')` }}
                     ></div>
                     <div className="absolute inset-0 bg-black/20 transition-colors duration-500"></div>
@@ -103,14 +138,14 @@ export default async function Home() {
                 </Link>
               </div>
             )}
-            
+
             {/* Stacked Secondary Tiles */}
             <div className="col-span-12 md:col-span-4 flex flex-col gap-gutter">
               {tiles12x12 && tiles12x12.slice(1, 3).map((tile, i) => (
                 <Link key={i} href="/tiles/12x12" className="group cursor-pointer flex-1 block no-underline">
                   <div className="h-48 rounded-[2rem] overflow-hidden relative ambient-shadow mb-4">
-                    <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
+                    <div
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700"
                       style={{ backgroundImage: `url('${getThumbnailUrl(tile.cloudinary_secure_url)}')` }}
                     ></div>
                   </div>
@@ -141,8 +176,8 @@ export default async function Home() {
               <div className="col-span-12 md:col-span-8 group cursor-pointer relative">
                 <Link href="/tiles/16x16" className="block no-underline">
                   <div className="aspect-[16/9] rounded-[2rem] overflow-hidden relative ambient-shadow mb-6">
-                    <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
+                    <div
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700"
                       style={{ backgroundImage: `url('${getThumbnailUrl(tiles16x16[0].cloudinary_secure_url)}')` }}
                     ></div>
                     <div className="absolute inset-0 bg-black/20 transition-colors duration-500"></div>
@@ -154,14 +189,14 @@ export default async function Home() {
                 </Link>
               </div>
             )}
-            
+
             {/* Stacked Secondary Tiles */}
             <div className="col-span-12 md:col-span-4 flex flex-col gap-gutter">
               {tiles16x16 && tiles16x16.slice(1, 3).map((tile, i) => (
                 <Link key={i} href="/tiles/16x16" className="group cursor-pointer flex-1 block no-underline">
                   <div className="h-48 rounded-[2rem] overflow-hidden relative ambient-shadow mb-4">
-                    <div 
-                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700" 
+                    <div
+                      className="bg-cover bg-center w-full h-full absolute inset-0 transition-transform duration-700"
                       style={{ backgroundImage: `url('${getThumbnailUrl(tile.cloudinary_secure_url)}')` }}
                     ></div>
                   </div>
@@ -185,14 +220,14 @@ export default async function Home() {
                 <span className="text-primary mt-1 font-bold">📍</span>
                 <div>
                   <div className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Location</div>
-                  <div className="font-body-md text-body-md text-on-surface">Pawadiyare Canal,<br/>Morbi, Gujarat, India</div>
+                  <div className="font-body-md text-body-md text-on-surface">Pawadiyare Canal,<br />Morbi, Gujarat, India</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <span className="text-primary mt-1 font-bold">☏</span>
                 <div>
                   <div className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Phone</div>
-                  <div className="font-body-md text-body-md text-on-surface">+91 90999 50773<br/>+91 90999 50771</div>
+                  <div className="font-body-md text-body-md text-on-surface">+91 90999 50773<br />+91 90999 50771</div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -206,8 +241,8 @@ export default async function Home() {
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 mt-12 md:mt-0">
             <div className="aspect-[4/3] rounded-[3rem] overflow-hidden ambient-shadow">
-              <div 
-                className="bg-cover bg-center w-full h-full" 
+              <div
+                className="bg-cover bg-center w-full h-full"
                 style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1000')" }}
               ></div>
             </div>

@@ -3,6 +3,7 @@ import "./globals.css";
 import SplashScreen from "@/components/SplashScreen";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import Navbar from "@/components/Navbar";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -28,8 +29,9 @@ export default function RootLayout({ children }) {
         {/* Ambient Background Shapes */}
         <div className="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] organic-shape-1 -z-10 animate-[spin_60s_linear_infinite]"></div>
         <div className="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] organic-shape-1 -z-10 animate-[spin_40s_linear_infinite_reverse]"></div>
-        
+
         <SplashScreen />
+        <Navbar />
         {children}
         <Footer />
         <WhatsAppButton />

@@ -12,14 +12,14 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activeTile, setActiveTile] = useState(null);
-  
+
   const [tiles, setTiles] = useState(initialTiles);
   const [totalCount, setTotalCount] = useState(initialTotalCount);
   const [visiblePage, setVisiblePage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [error, setError] = useState(null);
-  
+
   // Track if it's the initial render to avoid re-fetching on mount for search
   const isInitialMount = useRef(true);
 
@@ -41,10 +41,10 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
 
     // Set loading immediately to block pre-fetch effect
     setIsLoading(true);
-    
+
     const fetchFirstPage = async () => {
       setError(null);
-      
+
       try {
         const queryParams = new URLSearchParams();
         if (size) queryParams.append('size', size);
@@ -52,11 +52,11 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
         if (selectedCategory && selectedCategory !== "All") queryParams.append('category', selectedCategory);
         queryParams.append('page', 1);
         queryParams.append('pageSize', 24);
-        
+
         const url = `/api/tiles?${queryParams.toString()}`;
         const res = await fetch(url);
         const data = await res.json();
-        
+
         if (res.ok && data.tiles) {
           setTiles(data.tiles);
           setTotalCount(data.totalCount || 0);
@@ -71,7 +71,7 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
         setIsLoading(false);
       }
     };
-    
+
     const timeoutId = setTimeout(() => fetchFirstPage(), 300);
     return () => clearTimeout(timeoutId);
   }, [size, searchQuery, selectedCategory]);
@@ -85,7 +85,7 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
       if (tiles.length < totalCount && tiles.length <= visiblePage * 24) {
         setIsFetchingMore(true);
         const nextPageToFetch = Math.floor(tiles.length / 24) + 1;
-        
+
         try {
           const queryParams = new URLSearchParams();
           if (size) queryParams.append('size', size);
@@ -93,10 +93,10 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
           if (selectedCategory && selectedCategory !== "All") queryParams.append('category', selectedCategory);
           queryParams.append('page', nextPageToFetch);
           queryParams.append('pageSize', 24);
-          
+
           const res = await fetch(`/api/tiles?${queryParams.toString()}`);
           const data = await res.json();
-          
+
           if (res.ok && data.tiles) {
             setTiles(prev => {
               // Ensure we don't duplicate if strict mode causes double fetch
@@ -113,12 +113,12 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
         }
       }
     };
-    
+
     fetchNextPage();
   }, [tiles.length, visiblePage, totalCount, isFetchingMore, isLoading, size, searchQuery, selectedCategory]);
 
   const rawCategories = ["All", ...availableCategories];
-  
+
   // The tiles we actually render are sliced up to the visible page
   const displayedTiles = tiles.slice(0, visiblePage * 24);
   const hasMore = displayedTiles.length < totalCount;
@@ -130,7 +130,7 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
           <Link href="/" className={styles.backLink}>&larr; Back to Home</Link>
           <h1 className={styles.pageTitle}>{title} Collection</h1>
         </div>
-        
+
         <div className="flex flex-col md:flex-row gap-6 bg-surface-container border border-outline-variant p-6 rounded-xl md:items-center justify-between">
           <input
             type="text"
@@ -143,11 +143,10 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
             {rawCategories.map(rawCat => (
               <button
                 key={rawCat}
-                className={`border px-4 py-2 rounded-full cursor-pointer transition-all duration-300 font-body-md ${
-                  selectedCategory === rawCat 
-                    ? 'bg-primary-container text-[#17130b] border-primary-container font-medium' 
+                className={`border px-4 py-2 rounded-full cursor-pointer transition-all duration-300 font-body-md ${selectedCategory === rawCat
+                    ? 'bg-primary-container text-[#17130b] border-primary-container font-medium'
                     : 'bg-background text-on-surface-variant border-outline-variant hover:border-primary-container hover:text-on-surface'
-                }`}
+                  }`}
                 onClick={() => setSelectedCategory(rawCat)}
               >
                 {rawCat === "All" ? "All" : formatCategory(rawCat)}
@@ -189,10 +188,10 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
             </div>
           )}
         </div>
-        
+
         {hasMore && !isLoading && (
           <div className="mt-16 flex justify-center">
-            <button 
+            <button
               onClick={() => setVisiblePage(p => p + 1)}
               disabled={displayedTiles.length >= tiles.length && isFetchingMore}
               className="bg-primary-container text-[#17130b] font-body-md font-bold py-3 px-8 rounded-full hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center gap-2 shadow-lg cursor-pointer"

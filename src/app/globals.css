@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-padding-top: 120px;
+}
+
 @theme {
   --color-surface-container-low: #fff1e5;
   --color-on-secondary: #ffffff;
@@ -113,6 +117,7 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -123,6 +128,7 @@
     opacity: 0;
     transform: translateY(-2rem);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -138,6 +144,7 @@
     opacity: 0;
     transform: translateY(-1rem);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

@@ -8,30 +8,30 @@ export default function Footer() {
         <div className={styles.brandSection}>
           <h2 className={styles.brandName}>Sepione Ceramic</h2>
           <p className={styles.brandDesc}>
-            Crafting premium tiles for your homes, parking, and outdoors. 
+            Crafting premium tiles for your homes, parking, and outdoors.
             Quality that lasts, designs that inspire.
           </p>
         </div>
-        
+
         <div className={styles.contactSection}>
           <h3 className={styles.sectionTitle}>Contact Us</h3>
           <ul className={styles.contactList}>
             <li>
-              <strong>Email:</strong> <a href="mailto:Info@sepionetile.com">Info@sepionetile.com</a>
+              <strong>Email:</strong> <a href="mailto:Info@sepionetile.com">info@sepionetile.com</a>
             </li>
             <li>
               <strong>Phone:</strong> <a href="tel:+919099950773">+91 90999 50773</a>, <a href="tel:+919099950771">+91 90999 50771</a>
             </li>
             <li>
-              <strong>Address:</strong><br/>
-              Survey no. 595 P/2,<br/>
-              Nr. Pavadiyari Canal, At. Shapar,<br/>
-              Jetpar Road, Morbi, <br/>
-              (Gujarat) 363 642. India<br/>
+              <strong>Address:</strong><br />
+              Survey no. 595 P/2,<br />
+              Nr. Pavadiyari Canal, At. Shapar,<br />
+              Jetpar Road, Morbi, <br />
+              (Gujarat) 363 642. India<br />
             </li>
           </ul>
         </div>
-        
+
         <div className={styles.linksSection}>
           <h3 className={styles.sectionTitle}>Quick Links</h3>
           <ul className={styles.linksList}>
