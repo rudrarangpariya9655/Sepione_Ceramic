@@ -5,6 +5,7 @@ import TileCard from "./TileCard";
 import TileModal from "./TileModal";
 import styles from "./TileGallery.module.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { getThumbnailUrl } from "@/lib/cloudinary-utils";
 
@@ -171,15 +172,23 @@ export default function TileGallery({ title, size, initialTiles = [], initialTot
             </div>
           ) : displayedTiles.length > 0 ? (
             displayedTiles.map((tile, i) => (
-              <TileCard key={i} tile={{
-                name: tile.filename,
-                category: formatCategory(tile.category),
-                image: getThumbnailUrl(tile.cloudinary_secure_url)
-              }} onClick={() => setActiveTile({
-                name: tile.filename,
-                category: formatCategory(tile.category),
-                image: tile.cloudinary_secure_url // Keep full resolution for modal
-              })} />
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.6, delay: (i % 24) * 0.1, ease: "easeOut" }}
+              >
+                <TileCard tile={{
+                  name: tile.filename,
+                  category: formatCategory(tile.category),
+                  image: getThumbnailUrl(tile.cloudinary_secure_url)
+                }} onClick={() => setActiveTile({
+                  name: tile.filename,
+                  category: formatCategory(tile.category),
+                  image: tile.cloudinary_secure_url // Keep full resolution for modal
+                })} />
+              </motion.div>
             ))
           ) : (
             <div className={styles.noResults}>

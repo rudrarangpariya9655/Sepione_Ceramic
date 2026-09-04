@@ -1,15 +1,24 @@
+"use client";
+
 import styles from "./Footer.module.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.container}>
+      <motion.div 
+        className={styles.container}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className={styles.brandSection}>
           <h2 className={styles.brandName}>Sepione Ceramic</h2>
           <p className={styles.brandDesc}>
-            Crafting premium tiles for your homes, parking, and outdoors.
-            Quality that lasts, designs that inspire.
+            Crafting premium heavy-duty tiles for your homes, parking, and outdoors.
+            With 8 years of export excellence, we deliver quality that lasts and designs that inspire.
           </p>
         </div>
 
@@ -35,12 +44,23 @@ export default function Footer() {
         <div className={styles.linksSection}>
           <h3 className={styles.sectionTitle}>Quick Links</h3>
           <ul className={styles.linksList}>
-            <li><Link href="/">Home</Link></li>
+            <li>
+              <Link 
+                href="/" 
+                onClick={(e) => { 
+                  if (typeof window !== "undefined" && window.location.pathname === "/") { 
+                    window.scrollTo({ top: 0, behavior: "smooth" }); 
+                  } 
+                }}
+              >
+                Home
+              </Link>
+            </li>
             <li><Link href="/tiles/12x12">12x12 Tiles</Link></li>
             <li><Link href="/tiles/16x16">16x16 Tiles</Link></li>
           </ul>
         </div>
-      </div>
+      </motion.div>
       <div className={styles.bottomBar}>
         <p>&copy; {new Date().getFullYear()} Sepione Ceramic. All rights reserved.</p>
       </div>

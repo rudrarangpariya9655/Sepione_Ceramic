@@ -2,6 +2,13 @@
 
 html {
   scroll-padding-top: 120px;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @theme {
@@ -153,4 +160,4 @@ html {
 
 .animate-dropdown {
   animation: slideDownFade 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
+}@media (scripting: none) { * { opacity: 1 !important; transform: none !important; } }
