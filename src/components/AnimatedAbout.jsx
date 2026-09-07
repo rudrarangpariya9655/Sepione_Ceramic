@@ -1,21 +1,55 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CountUp from "react-countup";
+import { GemIcon, LayersIcon, KilnIcon, PackageIcon } from "@/components/icons";
+
+const ease = [0.2, 0.8, 0.2, 1];
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease } },
 };
+
+const VALUES = [
+  {
+    Icon: GemIcon,
+    title: "Quality Without Compromise",
+    body: "A relentless commitment to export-grade manufacturing standards on every tile produced.",
+  },
+  {
+    Icon: LayersIcon,
+    title: "Durability by Design",
+    body: "Engineering tiles specifically for heavy outdoor use, including parking areas, walkways, and high-traffic commercial spaces.",
+  },
+  {
+    Icon: KilnIcon,
+    title: "Craftsmanship Rooted in Heritage",
+    body: "Since 2015, we have been blending traditional ceramic knowledge with modern manufacturing precision.",
+  },
+  {
+    Icon: PackageIcon,
+    title: "Global Trust, Local Roots",
+    body: "Proudly manufactured in Morbi, Gujarat, and trusted across more than 12 export countries.",
+  },
+];
+
+const STATS = [
+  { end: 250, suffix: "+", label: "Happy Clients" },
+  { end: 12, suffix: "", label: "Export Countries" },
+  { end: 1000, suffix: "+", label: "Product Designs" },
+  { end: 8, suffix: "", label: "Years of Experience" },
+];
 
 export default function AnimatedAbout() {
   return (
@@ -70,24 +104,29 @@ export default function AnimatedAbout() {
 
           <motion.div variants={fadeUp}>
             <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface mb-8">Our Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-surface-container p-8 rounded-3xl border border-outline-variant/30 ambient-shadow">
-                <h3 className="font-headline-md text-xl text-primary mb-3">Quality Without Compromise</h3>
-                <p className="font-body-md text-on-surface-variant">A relentless commitment to export-grade manufacturing standards on every tile produced.</p>
-              </div>
-              <div className="bg-surface-container p-8 rounded-3xl border border-outline-variant/30 ambient-shadow">
-                <h3 className="font-headline-md text-xl text-primary mb-3">Durability by Design</h3>
-                <p className="font-body-md text-on-surface-variant">Engineering tiles specifically for heavy outdoor use, including parking areas, walkways, and high-traffic commercial spaces.</p>
-              </div>
-              <div className="bg-surface-container p-8 rounded-3xl border border-outline-variant/30 ambient-shadow">
-                <h3 className="font-headline-md text-xl text-primary mb-3">Craftsmanship Rooted in Heritage</h3>
-                <p className="font-body-md text-on-surface-variant">Since 2015, we have been blending traditional ceramic knowledge with modern manufacturing precision.</p>
-              </div>
-              <div className="bg-surface-container p-8 rounded-3xl border border-outline-variant/30 ambient-shadow">
-                <h3 className="font-headline-md text-xl text-primary mb-3">Global Trust, Local Roots</h3>
-                <p className="font-body-md text-on-surface-variant">Proudly manufactured in Morbi, Gujarat, and trusted across more than 12 export countries.</p>
-              </div>
-            </div>
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {VALUES.map(({ Icon, title, body }) => (
+                <motion.div
+                  key={title}
+                  variants={fadeUp}
+                  className="group bg-surface-container/80 p-8 rounded-3xl border border-outline-variant/40 ambient-shadow-sm lift"
+                >
+                  <span className="icon-chip mb-5">
+                    <Icon size={24} />
+                  </span>
+                  <h3 className="font-headline-md text-xl text-on-surface group-hover:text-primary transition-colors duration-300 mb-3">
+                    {title}
+                  </h3>
+                  <p className="font-body-md text-on-surface-variant">{body}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -98,22 +137,23 @@ export default function AnimatedAbout() {
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
         >
-          <motion.div variants={fadeUp}>
-            <div className="font-display-xl text-3xl md:text-5xl text-primary mb-2">250+</div>
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Happy Clients</div>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <div className="font-display-xl text-3xl md:text-5xl text-primary mb-2">12</div>
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Export Countries</div>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <div className="font-display-xl text-3xl md:text-5xl text-primary mb-2">1000+</div>
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Product Designs</div>
-          </motion.div>
-          <motion.div variants={fadeUp}>
-            <div className="font-display-xl text-3xl md:text-5xl text-primary mb-2">8</div>
-            <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Years of Experience</div>
-          </motion.div>
+          {STATS.map((stat) => (
+            <motion.div key={stat.label} variants={fadeUp}>
+              <div className="font-display-xl text-3xl md:text-5xl text-primary mb-2 tabular-nums">
+                <CountUp
+                  end={stat.end}
+                  suffix={stat.suffix}
+                  duration={2.2}
+                  separator=","
+                  enableScrollSpy
+                  scrollSpyOnce
+                />
+              </div>
+              <div className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.section>
     </main>

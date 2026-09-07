@@ -4,6 +4,7 @@ import SplashScreen from "@/components/SplashScreen";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Navbar from "@/components/Navbar";
+import PageTransition from "@/components/PageTransition";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ export default function RootLayout({ children }) {
 
         <SplashScreen />
         <Navbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
         <WhatsAppButton />
       </body>

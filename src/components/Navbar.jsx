@@ -2,123 +2,307 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useSyncExternalStore,
+} from "react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDownIcon, MenuIcon, CloseIcon, GridIcon } from "@/components/icons";
+
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/informations", label: "Informations" },
+  { href: "/tiles/12x12", label: "12x12" },
+  { href: "/tiles/16x16", label: "16x16" },
+  { href: "/#contact", label: "Contact" },
+];
+
+const COLLECTIONS = [
+  { href: "/tiles/12x12", label: "12x12 Tiles", note: "300x300mm standard" },
+  { href: "/tiles/16x16", label: "16x16 Tiles", note: "400x400mm monumental" },
+];
+
+const easing = [0.2, 0.8, 0.2, 1];
+
+/*
+  The URL fragment is the single source of truth for whether Contact is the
+  active tab. Reading it through useSyncExternalStore keeps it in sync without
+  a setState-in-effect, which React now flags as a cascading render.
+  history.pushState fires neither hashchange nor popstate, so the click handler
+  dispatches a synthetic hashchange after pushing.
+*/
+const subscribeToHash = (onChange) => {
+  window.addEventListener("hashchange", onChange);
+  window.addEventListener("popstate", onChange);
+  return () => {
+    window.removeEventListener("hashchange", onChange);
+    window.removeEventListener("popstate", onChange);
+  };
+};
+const getHashSnapshot = () => window.location.hash;
+const getServerHashSnapshot = () => "";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const [hash, setHash] = useState("");
+  const dropdownRef = useRef(null);
 
+  const hash = useSyncExternalStore(
+    subscribeToHash,
+    getHashSnapshot,
+    getServerHashSnapshot
+  );
+
+  // Collapse any open menu when the route changes, adjusting state during
+  // render rather than in an effect so there is no extra commit.
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (lastPathname !== pathname) {
+    setLastPathname(pathname);
+    setIsMobileMenuOpen(false);
+    setIsShopDropdownOpen(false);
+  }
+
+  // Condense the bar once the page starts moving.
   useEffect(() => {
-    setHash(window.location.hash);
-    const onHashChange = () => setHash(window.location.hash);
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the Collections menu on outside click or Escape.
   useEffect(() => {
-    setHash(window.location.hash);
-  }, [pathname]);
+    if (!isShopDropdownOpen) return;
+    const onPointerDown = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsShopDropdownOpen(false);
+      }
+    };
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setIsShopDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isShopDropdownOpen]);
 
-  const handleHomeClick = (e) => {
-    setHash('');
+  // Lock body scroll while the mobile sheet is open.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMobileMenuOpen]);
+
+  const isActive = useCallback(
+    (href) => {
+      if (href === "/#contact") return pathname === "/" && hash === "#contact";
+      if (href === "/") return pathname === "/" && hash !== "#contact";
+      return pathname === href;
+    },
+    [pathname, hash]
+  );
+
+  const handleNavClick = (href) => (e) => {
     setIsMobileMenuOpen(false);
-    if (pathname === '/') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState(null, '', '/');
+    setIsShopDropdownOpen(false);
+
+    if (href === "/#contact") {
+      if (pathname === "/") {
+        e.preventDefault();
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", "/#contact");
+        window.dispatchEvent(new Event("hashchange"));
+      }
+      return;
     }
-  };
 
-  const handleContactClick = (e) => {
-    setHash('#contact');
-    setIsMobileMenuOpen(false);
-    if (pathname === '/') {
+    if (href === "/" && pathname === "/") {
       e.preventDefault();
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', '/#contact');
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "/");
+      window.dispatchEvent(new Event("hashchange"));
     }
-  };
-
-  const handleStandardLinkClick = () => {
-    setHash('');
-    setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav className="fixed top-6 left-0 right-0 mx-auto w-[95%] max-w-container-max z-50 bg-surface/90 backdrop-blur-xl border border-outline-variant/30 shadow-2xl rounded-full transition-all duration-700 animate-nav">
-      <div className="flex justify-between items-center px-6 md:px-10 py-2 md:py-3 w-full h-full relative">
-        <Link href="/" className="flex items-center">
-          <Image src="/logo-nav.png" alt="Sepione Ceramic Logo" width={250} height={60} className="object-contain h-8 md:h-10 w-auto scale-[2.5] origin-left" priority />
+    <motion.nav
+      initial={{ opacity: 0, y: -32 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: easing }}
+      className={`fixed top-4 md:top-6 left-0 right-0 mx-auto w-[95%] max-w-container-max z-50 rounded-full border backdrop-blur-xl transition-[background-color,box-shadow,border-color,padding] duration-500 ${
+        isScrolled
+          ? "bg-surface/95 border-outline-variant/50 ambient-shadow"
+          : "bg-surface/80 border-outline-variant/25 ambient-shadow-sm"
+      }`}
+    >
+      <div
+        className={`flex justify-between items-center px-6 md:px-10 w-full h-full relative transition-[padding] duration-500 ${
+          isScrolled ? "py-1.5 md:py-2" : "py-2 md:py-3"
+        }`}
+      >
+        <Link href="/" onClick={handleNavClick("/")} className="flex items-center group">
+          <Image
+            src="/logo-nav.png"
+            alt="Sepione Ceramic"
+            width={250}
+            height={60}
+            className="object-contain h-8 md:h-10 w-auto scale-[2.5] origin-left transition-transform duration-500 group-hover:scale-[2.6]"
+            priority
+          />
         </Link>
 
-        {/* Desktop Links (Perfectly Centered) */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 space-x-gutter items-center font-body-md text-body-md uppercase tracking-[0.2em] whitespace-nowrap">
-          <Link href="/" onClick={handleHomeClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${pathname === '/' && hash !== '#contact' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>Home</Link>
-          <Link href="/about" onClick={handleStandardLinkClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${pathname === '/about' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>About</Link>
-          <Link href="/informations" onClick={handleStandardLinkClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${pathname === '/informations' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>Informations</Link>
-          <Link href="/tiles/12x12" onClick={handleStandardLinkClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${pathname === '/tiles/12x12' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>12x12</Link>
-          <Link href="/tiles/16x16" onClick={handleStandardLinkClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${pathname === '/tiles/16x16' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>16x16</Link>
-          <Link href="/#contact" onClick={handleContactClick} className={`pb-1 hover:opacity-80 transition-all duration-300 ${hash === '#contact' ? 'text-primary border-b border-primary' : 'text-on-surface-variant hover:text-primary'}`}>Contact</Link>
+        {/* Desktop links, optically centered in the bar */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-7 lg:gap-gutter items-center font-body-md text-body-md uppercase tracking-[0.2em] whitespace-nowrap">
+          {NAV_LINKS.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={handleNavClick(link.href)}
+                aria-current={active ? "page" : undefined}
+                className={`relative pb-1 transition-colors duration-300 ${
+                  active ? "text-primary" : "text-on-surface-variant hover:text-primary"
+                }`}
+              >
+                {link.label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active-underline"
+                    className="absolute left-0 right-0 -bottom-0.5 h-px bg-primary"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
-        <div className="hidden md:flex items-center space-x-6 relative">
+
+        {/* Collections menu */}
+        <div className="hidden md:flex items-center relative" ref={dropdownRef}>
           <button
-            onClick={() => setIsShopDropdownOpen(!isShopDropdownOpen)}
-            className="text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-all duration-300 flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsShopDropdownOpen((open) => !open)}
+            aria-expanded={isShopDropdownOpen}
+            aria-haspopup="true"
+            className="text-primary hover:opacity-80 transition-opacity duration-300 flex items-center gap-2 cursor-pointer"
           >
-            <span className="font-body-md text-body-md uppercase tracking-[0.2em]">Collections</span>
-            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-300 ${isShopDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+            <span className="font-body-md text-body-md uppercase tracking-[0.2em]">
+              Collections
+            </span>
+            <motion.span
+              animate={{ rotate: isShopDropdownOpen ? 180 : 0 }}
+              transition={{ duration: 0.35, ease: easing }}
+              className="flex"
+            >
+              <ChevronDownIcon size={16} />
+            </motion.span>
           </button>
 
-          {/* Dropdown Menu */}
-          <div className={`absolute top-full right-0 mt-6 w-48 bg-surface-container-high border border-white/10 shadow-2xl rounded-xl overflow-hidden transition-all duration-300 flex flex-col origin-top-right ${isShopDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
-            <Link
-              href="/tiles/12x12"
-              className="px-6 py-4 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-body-md uppercase tracking-widest text-sm border-b border-white/5"
-              onClick={() => setIsShopDropdownOpen(false)}
-            >
-              12x12 Tiles
-            </Link>
-            <Link
-              href="/tiles/16x16"
-              className="px-6 py-4 text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors font-body-md uppercase tracking-widest text-sm"
-              onClick={() => setIsShopDropdownOpen(false)}
-            >
-              16x16 Tiles
-            </Link>
-          </div>
+          <AnimatePresence>
+            {isShopDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                transition={{ duration: 0.28, ease: easing }}
+                className="absolute top-full right-0 mt-5 w-64 origin-top-right bg-surface-container-high border border-outline-variant/40 ambient-shadow rounded-2xl overflow-hidden flex flex-col p-2"
+              >
+                {COLLECTIONS.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsShopDropdownOpen(false)}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors no-underline"
+                  >
+                    <span className="icon-chip icon-chip-sm">
+                      <GridIcon size={18} />
+                    </span>
+                    <span className="flex flex-col">
+                      <span className="font-body-md uppercase tracking-widest text-sm text-on-surface group-hover:text-primary transition-colors">
+                        {item.label}
+                      </span>
+                      <span className="font-body-md text-xs text-on-surface-variant">
+                        {item.note}
+                      </span>
+                    </span>
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-        {/* Mobile Menu Toggle */}
+
+        {/* Mobile toggle */}
         <button
           className="md:hidden text-primary"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          aria-expanded={isMobileMenuOpen}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-            )}
-          </svg>
+          {isMobileMenuOpen ? <CloseIcon size={28} /> : <MenuIcon size={28} />}
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-surface-container-high border-b border-white/10 shadow-2xl flex flex-col p-6 gap-6 rounded-b-[2rem] animate-dropdown">
-          <Link href="/" className={`font-body-lg uppercase tracking-[0.2em] ${pathname === '/' && hash !== '#contact' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleHomeClick}>Home</Link>
-          <Link href="/about" className={`font-body-lg uppercase tracking-[0.2em] ${pathname === '/about' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleStandardLinkClick}>About</Link>
-          <Link href="/informations" className={`font-body-lg uppercase tracking-[0.2em] ${pathname === '/informations' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleStandardLinkClick}>Informations</Link>
-          <Link href="/tiles/12x12" className={`font-body-lg uppercase tracking-[0.2em] ${pathname === '/tiles/12x12' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleStandardLinkClick}>12x12</Link>
-          <Link href="/tiles/16x16" className={`font-body-lg uppercase tracking-[0.2em] ${pathname === '/tiles/16x16' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleStandardLinkClick}>16x16</Link>
-          <Link href="/#contact" className={`font-body-lg uppercase tracking-[0.2em] ${hash === '#contact' ? 'text-primary' : 'text-on-surface-variant'}`} onClick={handleContactClick}>Contact</Link>
-          <Link href="/tiles/12x12" className="font-body-lg text-primary uppercase tracking-[0.2em] mt-4" onClick={handleStandardLinkClick}>Collections</Link>
-        </div>
-      )}
-    </nav>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: easing }}
+            className="md:hidden absolute top-full left-0 w-full overflow-hidden bg-surface-container-high border border-outline-variant/40 ambient-shadow rounded-[2rem] mt-3"
+          >
+            <div className="flex flex-col p-6 gap-1">
+              {NAV_LINKS.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.06 * i + 0.05, duration: 0.3, ease: easing }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={handleNavClick(link.href)}
+                    className={`block py-3 font-body-lg uppercase tracking-[0.2em] transition-colors ${
+                      isActive(link.href) ? "text-primary" : "text-on-surface-variant"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.42, duration: 0.3, ease: easing }}
+                className="mt-4 pt-4 border-t border-outline-variant/40"
+              >
+                <Link
+                  href="/tiles/12x12"
+                  onClick={handleNavClick("/tiles/12x12")}
+                  className="flex items-center gap-3 text-primary font-body-lg uppercase tracking-[0.2em] no-underline"
+                >
+                  <GridIcon size={20} />
+                  Collections
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }
