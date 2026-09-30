@@ -1,40 +1,19 @@
-import { supabaseClient } from '@/lib/supabase/client';
-import AnimatedHome from "@/components/AnimatedHome";
+import { getTiles } from '@/lib/tiles';
+import AnimatedHome from '@/components/AnimatedHome';
 
-export const revalidate = 60; // Cache for 60 seconds
+export const revalidate = 60;
 
 export default async function Home() {
-  // Fetch hero tile (newest global)
-  const { data: heroData } = await supabaseClient
-    .from('tile_images')
-    .select('cloudinary_secure_url')
-    .eq('upload_status', 'SUCCESS')
-    .order('created_at', { ascending: false })
-    .limit(1);
-
-  const heroTile = heroData && heroData.length > 0 ? heroData[0].cloudinary_secure_url : null;
-
-  // Fetch top 3 for 12x12
-  const { data: tiles12x12 } = await supabaseClient
-    .from('tile_images')
-    .select('id, size, category, filename, cloudinary_secure_url, created_at')
-    .eq('upload_status', 'SUCCESS')
-    .eq('size', '12x12')
-    .order('created_at', { ascending: false })
-    .limit(3);
-
-  // Fetch top 3 for 16x16
-  const { data: tiles16x16 } = await supabaseClient
-    .from('tile_images')
-    .select('id, size, category, filename, cloudinary_secure_url, created_at')
-    .eq('upload_status', 'SUCCESS')
-    .eq('size', '16x16')
-    .order('created_at', { ascending: false })
-    .limit(3);
+  const [collection12, collection16] = await Promise.all([
+    getTiles({ size: '12x12', limit: 3 }),
+    getTiles({ size: '16x16', limit: 3 }),
+  ]);
 
   return (
-    <>
-      <AnimatedHome heroTile={heroTile} tiles12x12={tiles12x12} tiles16x16={tiles16x16} />
-    </>
+    <AnimatedHome
+      tiles12x12={collection12.tiles}
+      tiles16x16={collection16.tiles}
+      catalogUnavailable={Boolean(collection12.error || collection16.error)}
+    />
   );
 }

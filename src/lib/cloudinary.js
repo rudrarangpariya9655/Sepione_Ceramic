@@ -1,37 +1,22 @@
+import 'server-only';
 import { v2 as cloudinary } from 'cloudinary';
 
-const cloudinaryUrl = process.env.CLOUDINARY_URL;
-const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-const apiKey = process.env.CLOUDINARY_API_KEY;
-const apiSecret = process.env.CLOUDINARY_API_SECRET;
-
-let activeCloudName;
-let configSource;
-
-if (cloudinaryUrl) {
-  // Cloudinary SDK automatically picks up process.env.CLOUDINARY_URL.
-  // We can just trigger the config parsing to read the cloud_name.
-  cloudinary.config(true); // Forces initialization from environment variables
+let configured = false;
+try {
+  if (process.env.CLOUDINARY_URL) {
+    cloudinary.config(true);
+  } else {
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+  }
   const config = cloudinary.config();
-  
-  // Fallback regex if SDK parsing behaves unexpectedly
-  const match = cloudinaryUrl.match(/@([^/?]+)/);
-  activeCloudName = config.cloud_name || (match ? match[1] : 'unknown');
-  configSource = 'CLOUDINARY_URL';
-} else if (cloudName && apiKey && apiSecret) {
-  cloudinary.config({
-    cloud_name: cloudName,
-    api_key: apiKey,
-    api_secret: apiSecret,
-  });
-  activeCloudName = cloudName;
-  configSource = 'separate variables (CLOUDINARY_CLOUD_NAME, etc.)';
-} else {
-  throw new Error(
-    "Cloudinary configuration missing! Please provide either CLOUDINARY_URL (recommended) or all three separate variables (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET) in your .env.local file."
-  );
+  configured = Boolean(config.cloud_name && config.api_key && config.api_secret);
+} catch {
+  // Importing an optional upload integration must not crash the whole app.
 }
 
-console.log(`[Cloudinary Init] Configured successfully using ${configSource}. Cloud Name: ${activeCloudName}`);
-
+export const isCloudinaryConfigured = configured;
 export default cloudinary;

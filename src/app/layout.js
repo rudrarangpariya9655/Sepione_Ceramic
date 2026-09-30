@@ -1,39 +1,35 @@
-import { Syne, Hanken_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import SplashScreen from "@/components/SplashScreen";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Navbar from "@/components/Navbar";
-import PageTransition from "@/components/PageTransition";
 
-const syne = Syne({
-  subsets: ["latin"],
+const syne = localFont({
+  src: "./fonts/syne-latin.woff2",
+  weight: "400 800",
   variable: "--font-syne",
   display: 'swap',
 });
 
-const hanken = Hanken_Grotesk({
-  subsets: ["latin"],
+const hanken = localFont({
+  src: "./fonts/hanken-grotesk-latin.woff2",
+  weight: "100 900",
   variable: "--font-hanken",
   display: 'swap',
 });
 
 export const metadata = {
-  title: "Sepione Ceramic",
-  description: "Avant-garde ceramics crafted for spaces that demand presence.",
+  title: { default: "Sepione Ceramic | Parking & Outdoor Tiles", template: "%s | Sepione Ceramic" },
+  description: "Discover parking and outdoor tiles from Sepione Ceramic. 10 years of experience, crafted in Morbi, India, in 300 × 300 mm and 400 × 400 mm formats.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${syne.variable} ${hanken.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${syne.variable} ${hanken.variable}`}>
       <body className="antialiased selection:bg-primary-container selection:text-on-primary-container bg-background text-on-background">
-        {/* Ambient Background Shapes */}
-        <div className="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] organic-shape-1 -z-10 animate-[spin_60s_linear_infinite]"></div>
-        <div className="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] organic-shape-1 -z-10 animate-[spin_40s_linear_infinite_reverse]"></div>
-
-        <SplashScreen />
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <Navbar />
-        <PageTransition>{children}</PageTransition>
+        {children}
         <Footer />
         <WhatsAppButton />
       </body>

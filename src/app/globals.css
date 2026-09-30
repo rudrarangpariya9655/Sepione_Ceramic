@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+body { margin: 0; font-family: var(--font-hanken), Arial, sans-serif; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid #806442; outline-offset: 5px; }
+.skip-link { position: fixed; top: 10px; left: 20px; z-index: 100; background: #fff; color: #292a24; padding: 14px 20px; transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); }
+
 html {
   scroll-padding-top: 120px;
   scroll-behavior: smooth;
@@ -48,7 +54,7 @@ html {
   --color-on-secondary-container: #010f5c;
   --color-on-primary-container: #271900;
   --color-on-primary-fixed-variant: #5e4200;
-  --color-background: #fff8f3;
+  --color-background: #f8f7f2;
   --color-tertiary-container: #adecff;
   --color-tertiary-fixed-dim: #4ed7f6;
   --color-on-error-container: #410002;

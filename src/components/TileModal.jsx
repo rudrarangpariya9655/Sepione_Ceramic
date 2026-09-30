@@ -1,68 +1,64 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./TileModal.module.css";
 
 export default function TileModal({ tile, onClose }) {
-  const [mounted, setMounted] = useState(false);
+  const dialogRef = useRef(null);
+  const titleId = useId();
+  const [failedImage, setFailedImage] = useState(null);
 
   useEffect(() => {
-    setMounted(true);
-    // Prevent scrolling when modal is open
+    const dialog = dialogRef.current;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
     document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto";
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus({ preventScroll: true });
     };
   }, []);
 
   if (!tile) return null;
 
+  const imageAvailable = typeof tile.image === "string" && /^(\/(?!\/)|https:\/\/res\.cloudinary\.com\/)/.test(tile.image) && failedImage !== tile.image;
+  const message = `Hello Sepione Ceramic, I would like a quote for ${tile.name}${tile.size ? ` (${tile.size})` : ""} from the ${tile.category || "tile"} collection. Please share availability and pricing.`;
+  const quoteUrl = `https://wa.me/919099950773?text=${encodeURIComponent(message)}`;
+
   return (
-    <div className={`${styles.overlay} ${mounted ? styles.active : ""}`} onClick={onClose}>
-      <div 
-        className={`${styles.modalContainer} ${mounted ? styles.active : ""}`} 
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className={styles.closeBtn} onClick={onClose}>&times;</button>
-        
+    <dialog
+      ref={dialogRef}
+      className={styles.overlay}
+      aria-labelledby={titleId}
+      onCancel={(event) => { event.preventDefault(); onClose(); }}
+      onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
+    >
+      <div className={styles.modalContainer}>
+        <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close tile details">×</button>
         <div className={styles.content}>
           <div className={styles.imageSection}>
             <div className={styles.imageWrapper}>
-              <Image
-                src={tile.image}
-                alt={tile.name}
-                fill
-                style={{ objectFit: "contain" }}
-              />
+              {imageAvailable ? <Image src={tile.image} alt={`${tile.name} tile pattern`} fill sizes="(max-width: 767px) 85vw, 550px" style={{ objectFit: "contain" }} onError={() => setFailedImage(tile.image)} /> : <p className={styles.imageFallback}>This preview is unavailable. Our team can share the design with you.</p>}
             </div>
           </div>
-          
           <div className={styles.infoSection}>
-            <h2 className={styles.title}>{tile.name}</h2>
-            <div className={styles.badge}>{tile.category}</div>
-            
-            <p className={styles.description}>
-              Enhance your space with the exquisite {tile.name}. 
-              Part of our premium {tile.category} collection, this tile is designed for durability and elegance, 
-              perfect for making a statement in any home or parking area.
-            </p>
-            
-            <div className={styles.detailsList}>
-              <div className={styles.detailItem}>
-                <span className={styles.detailLabel}>Finish</span>
-                <span className={styles.detailValue}>Premium {tile.category}</span>
-              </div>
-              <div className={styles.detailItem}>
-                <span className={styles.detailLabel}>Usage</span>
-                <span className={styles.detailValue}>Parking & Outdoors</span>
-              </div>
-            </div>
-            
-            <button className="btn-primary" style={{marginTop: "2rem"}}>Request Quote</button>
+            <p className={styles.eyebrow}>A closer look</p>
+            <h2 id={titleId} className={styles.title}>{tile.name}</h2>
+            <p className={styles.badge}>{tile.category || "Tile collection"}</p>
+            <p className={styles.description}>Find the right foundation for your space. Ask our team about this design, available finishes and the best fit for your project.</p>
+            <dl className={styles.detailsList}>
+              {tile.size && <div className={styles.detailItem}><dt>Size</dt><dd>{tile.size.replace("x", " × ")} inches</dd></div>}
+              <div className={styles.detailItem}><dt>Collection</dt><dd>{tile.category || "Tile collection"}</dd></div>
+              <div className={styles.detailItem}><dt>Availability</dt><dd>Enquire with our team</dd></div>
+            </dl>
+            <a className={styles.quoteButton} href={quoteUrl} target="_blank" rel="noopener noreferrer">Request a quote <span aria-hidden="true">↗</span></a>
+            <p className={styles.note}>Continue on WhatsApp with this design’s details.</p>
           </div>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

@@ -1,14 +1,10 @@
 import AnimatedInformations from "@/components/AnimatedInformations";
 
 export const metadata = {
-  title: "Informations | Sepione Ceramic",
-  description: "Technical and packing information for Sepione Tiles products.",
+  title: "Product Information",
+  description: "Explore Sepione Ceramic tile formats, calculated coverage, packing enquiries, and product specification guidance.",
 };
 
 export default function InformationsPage() {
-  return (
-    <>
-      <AnimatedInformations />
-    </>
-  );
+  return <AnimatedInformations />;
 }

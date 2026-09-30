@@ -1,0 +1,24 @@
+.header { position: fixed; inset: 0 0 auto; z-index: 50; background: #f8f7f2f5; border-bottom: 1px solid #ddd7cb; backdrop-filter: blur(16px); }
+.nav { max-width: 1440px; height: 90px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 60px); display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+.logo { position: relative; display: block; width: 174px; height: 52px; flex-shrink: 0; overflow: hidden; }
+.logo img { position: absolute; width: 290px; max-width: none; height: 193px; top: -68px; left: -62px; mix-blend-mode: multiply; }
+.desktopLinks { display: flex; align-items: center; gap: clamp(18px, 2vw, 30px); }
+.desktopLinks a { font-size: 12px; padding: 12px 0; border-bottom: 1px solid transparent; white-space: nowrap; color: #615e54; }
+.desktopLinks a[aria-current], .desktopLinks a:hover { color: #715b38; border-bottom-color: #8d7954; }
+.contact { display: inline-flex; align-items: center; gap: 19px; padding: 13px 19px; border: 1px solid #a19580; font-size: 12px; flex-shrink: 0; }
+.contact:hover { background: #e9e4d8; }
+.toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer; }
+.mobileDialog { position: fixed; inset: 0 0 0 auto; margin: 0 0 0 auto; width: min(420px, 100%); max-width: 100%; height: 100dvh; max-height: 100dvh; padding: 0; border: 0; color: #292a24; background: #f8f7f2; }
+.mobileDialog::backdrop { background: #181c186b; backdrop-filter: blur(3px); }
+.mobilePanel { min-height: 100%; padding: 24px 28px; display: flex; flex-direction: column; }
+.mobileHeading { display: flex; justify-content: space-between; align-items: center; padding-bottom: 22px; border-bottom: 1px solid #d9d3c6; }
+.mobileHeading > span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.mobileHeading button { display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer; }
+.mobilePanel nav { padding: 24px 0; }
+.mobilePanel nav a { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; font-size: 20px; font-family: Georgia, serif; }
+.mobilePanel nav a[aria-current] { color: #856a42; }
+.mobileNote { margin-top: auto; padding-top: 24px; border-top: 1px solid #d9d3c6; display: flex; flex-direction: column; gap: 12px; font-size: 13px; }
+.mobileNote span { text-transform: uppercase; letter-spacing: .15em; font-size: 10px; margin-bottom: 8px; color: #856a42; }
+@media (max-width: 1079px) { .desktopLinks { display: none; }.toggle { display: flex; }.contact { margin-left: auto; } }
+@media (max-width: 800px) { .nav { height: 76px; gap: 16px; }.contact { padding: 11px 15px; } }
+@media (max-width: 500px) { .contact { display: none; }.logo { width: 158px; }.logo img { width: 270px; height: 180px; top: -63px; left: -59px; } }

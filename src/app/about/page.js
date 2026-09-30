@@ -1,14 +1,10 @@
 import AnimatedAbout from "@/components/AnimatedAbout";
 
 export const metadata = {
-  title: "About | Sepione Ceramic",
-  description: "About Sepione Tiles, one of India's prominent manufacturers and exporters of heavy-duty outdoor tiles.",
+  title: "About",
+  description: "Discover Sepione Ceramic: 10 years of experience manufacturing and exporting heavy-duty outdoor tiles from Morbi, Gujarat.",
 };
 
 export default function AboutPage() {
-  return (
-    <>
-      <AnimatedAbout />
-    </>
-  );
+  return <AnimatedAbout />;
 }
