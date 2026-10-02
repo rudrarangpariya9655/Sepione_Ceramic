@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { ArrowRightIcon, LayersIcon, PackageIcon } from "@/components/icons";
+import { COLLECTION_FORMATS } from "@/lib/collection-formats";
 import styles from "./SecondaryPages.module.css";
-
-const FORMATS = [
-  { name: "12 × 12 collection", width: 300, height: 300, href: "/tiles/12x12" },
-  { name: "16 × 16 collection", width: 400, height: 400, href: "/tiles/16x16" },
-];
 
 const TECHNICAL_DETAILS = [
   { title: "Dimensions & finish", body: "Ask for the actual dimensions, thickness, finish, and dimensional tolerances of your selected tile." },
@@ -34,28 +30,29 @@ export default function AnimatedInformations() {
       <section id="formats" className={styles.section} aria-labelledby="formats-title">
         <p className={styles.eyebrow}>Find your format</p>
         <h2 id="formats-title" className={styles.sectionTitle}>Two sizes. Room for possibility.</h2>
-        <div className={styles.tableScroll} role="region" aria-label="Tile format coverage table, scroll horizontally on small screens" tabIndex={0}>
+        <div className={styles.tableScroll} role="region" aria-label="Collection coverage and packing specifications table" tabIndex={0}>
           <table className={styles.table}>
-            <caption>Calculated coverage per tile, based on the listed metric dimensions.</caption>
+            <caption>Coverage per tile and per box for each metric collection.</caption>
             <thead>
-              <tr><th scope="col">Collection</th><th scope="col">Size</th><th scope="col">Area / tile (m²)</th><th scope="col">Area / tile (sq ft)</th></tr>
+              <tr><th scope="col">Collection</th><th scope="col">Area / Tile (m²)</th><th scope="col">Area / Box (m²)</th><th scope="col">Per Box Weight</th><th scope="col">Thickness</th></tr>
             </thead>
             <tbody>
-              {FORMATS.map((format) => {
+              {COLLECTION_FORMATS.map((format) => {
                 const squareMetres = (format.width * format.height) / 1000000;
                 return (
                   <tr key={format.href}>
                     <th scope="row"><Link className={styles.textLink} href={format.href}>{format.name}<ArrowRightIcon size={16} /></Link></th>
-                    <td>{format.width} × {format.height} mm</td>
                     <td>{squareMetres.toFixed(2)}</td>
-                    <td>{(squareMetres * 10.76391041671).toFixed(2)}</td>
+                    <td>{format.areaPerBox.toFixed(2)}</td>
+                    <td>{format.weightPerBoxKg} kg approx.</td>
+                    <td>{format.thicknessMm} mm approx.</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-        <p className={styles.note}>Collection names use nominal inch sizes. Coverage above uses metric dimensions and excludes joints, cuts, and wastage. Box coverage depends on the confirmed number of pieces per box.</p>
+        <p className={styles.note}>Collection names identify the metric format. Area per tile is calculated from the dimensions; area per box is 0.72 m² for 300x300 and 0.80 m² for 400x400. Coverage excludes joints, cuts, and wastage.</p>
       </section>
 
       <section id="packing" className={styles.section} aria-labelledby="packing-title">

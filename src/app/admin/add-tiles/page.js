@@ -231,8 +231,8 @@ export default function AddTilesPage() {
               onChange={(e) => { setSize(e.target.value); setCategories([]); setCategory(''); }}
               className="w-full bg-surface border border-outline-variant rounded-xl p-4 text-on-surface focus:outline-none focus:border-primary-container"
             >
-              <option value="12x12">12x12</option>
-              <option value="16x16">16x16</option>
+              <option value="12x12">300x300</option>
+              <option value="16x16">400x400</option>
             </select>
           </div>
 

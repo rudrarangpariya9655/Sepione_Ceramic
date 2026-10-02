@@ -6,8 +6,8 @@ const QUICK_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About us" },
   { href: "/informations", label: "Product information" },
-  { href: "/tiles/12x12", label: "300 × 300 mm tiles" },
-  { href: "/tiles/16x16", label: "400 × 400 mm tiles" },
+  { href: "/tiles/300x300", label: "300 × 300 mm tiles" },
+  { href: "/tiles/400x400", label: "400 × 400 mm tiles" },
 ];
 
 export default function Footer() {

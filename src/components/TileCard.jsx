@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getTileFormat } from "@/lib/collection-formats";
 import styles from "./TileCard.module.css";
 
 export default function TileCard({ tile, onClick }) {
@@ -21,7 +22,7 @@ export default function TileCard({ tile, onClick }) {
             onError={() => setFailedImage(tile.image)}
           />
         ) : <span className={styles.imageFallback}>Preview unavailable</span>}
-        {tile.size && <span className={styles.size}>{tile.size.replace("x", " × ")} in</span>}
+        {tile.size && <span className={styles.size}>{getTileFormat(tile.size)?.dimensions || "—"}</span>}
         <span className={styles.viewLabel} aria-hidden="true">View design ↗</span>
       </span>
       <span className={styles.info}>

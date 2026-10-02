@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import AdminEditDialog from '@/components/AdminEditDialog';
+import { getTileFormat } from '@/lib/collection-formats';
 
 export default function AdminDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -265,7 +266,7 @@ export default function AdminDashboardPage() {
                       </div>
                     </td>
                     <td className="p-4 text-on-surface font-medium">{tile.filename}</td>
-                    <td className="p-4 text-on-surface-variant">{tile.size}</td>
+                    <td className="p-4 text-on-surface-variant">{getTileFormat(tile.size)?.name || '—'}</td>
                     <td className="p-4 text-on-surface-variant">{tile.category}</td>
                     <td className="p-4">
                       <span className={`px-2 py-1 rounded text-xs font-bold ${tile.upload_status === 'SUCCESS' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>

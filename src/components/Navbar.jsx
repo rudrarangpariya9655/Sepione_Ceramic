@@ -10,8 +10,8 @@ import styles from "./Navbar.module.css";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About us" },
-  { href: "/tiles/12x12", label: "12 × 12 tiles" },
-  { href: "/tiles/16x16", label: "16 × 16 tiles" },
+  { href: "/tiles/300x300", label: "300x300 tiles" },
+  { href: "/tiles/400x400", label: "400x400 tiles" },
   { href: "/informations", label: "Product information" },
 ];
 export default function Navbar() {

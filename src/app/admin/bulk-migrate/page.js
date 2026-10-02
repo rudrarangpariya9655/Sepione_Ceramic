@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { formatCollectionText } from '@/lib/collection-formats';
 
 export default function BulkMigratePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -146,7 +147,7 @@ export default function BulkMigratePage() {
             </div>
             {migrationState?.isRunning && (
               <div className="text-sm text-on-surface-variant mt-2 max-w-lg truncate">
-                Processing: {migrationState?.currentFile}
+                Processing: {formatCollectionText(migrationState?.currentFile)}
               </div>
             )}
           </div>
@@ -206,7 +207,7 @@ export default function BulkMigratePage() {
             <div className="bg-surface border border-red-500/20 rounded-xl overflow-hidden max-h-96 overflow-y-auto">
               {migrationState.failedFiles.map((err, idx) => (
                 <div key={idx} className="p-4 border-b border-white/5 last:border-0 hover:bg-white/5">
-                  <div className="text-sm font-mono text-on-surface mb-1 break-all">{err.file}</div>
+                  <div className="text-sm font-mono text-on-surface mb-1 break-all">{formatCollectionText(err.file)}</div>
                   <div className="text-sm text-red-400/80">{err.reason}</div>
                   {err.cleanup && <p className="text-error">{err.cleanup.error} Asset: {err.cleanup.assetId}</p>}
                   {err.assetId && <p>Existing asset: {err.assetId}</p>}

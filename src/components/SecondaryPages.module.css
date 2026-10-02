@@ -38,7 +38,8 @@
 .sectionLinks a { display: inline-flex; align-items: center; min-height: 44px; border: 1px solid var(--color-outline-variant); padding: 10px 18px; font-size: 13px; transition: background .2s; }
 .sectionLinks a:hover { background: var(--color-surface-container); }
 .tableScroll { margin-top: 32px; overflow-x: auto; border: 1px solid var(--color-outline-variant); }
-.table { width: 100%; min-width: 620px; border-collapse: collapse; text-align: left; font-size: 15px; }
+.table { width: 100%; min-width: 800px; table-layout: fixed; border-collapse: collapse; text-align: left; font-size: 15px; }
+.table th:first-child { width: 20%; }
 .table caption { padding: 18px 24px; text-align: left; line-height: 1.6; color: var(--color-on-surface-variant); background: var(--color-surface-container); font-size: 13px; }
 .table th, .table td { padding: 20px 24px; border-top: 1px solid var(--color-outline-variant); }
 .table thead th { background: var(--color-surface-container-high); font-weight: 600; font-size: 12px; }
@@ -61,6 +62,7 @@
   .cardGrid, .twoColumns { grid-template-columns: 1fr; }
   .callout { padding: 26px; }
   .button { width: 100%; }
+  .table th, .table td { padding: 16px 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

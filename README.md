@@ -29,7 +29,8 @@ The tests cover catalogue validation, stable pagination, category lookup, unavai
 - Hanken Grotesk and Syne are self-hosted in `src/app/fonts`, with their license notices. Building does not require Google Fonts access.
 - Public pages use the Supabase anonymous key and its existing row-level security permissions.
 - Company experience is displayed as **10 years**, as requested.
-- Packing and lab specifications must be supplied for the selected product. The information page labels mathematical per-tile coverage separately from commercial packing values.
+- The information page separates calculated per-tile area (0.09 / 0.16 m²) from box area (0.72 / 0.80 m²) for 300x300 / 400x400. Other packing and lab specifications must be supplied for the selected product.
+- Public collection routes are `/tiles/300x300` and `/tiles/400x400`; the previous URLs permanently redirect. Existing database size keys and image/source paths are retained for compatibility, with metric presentation defined in `src/lib/collection-formats.js`.
 - Admin source is included in Git and Tailwind's automatic source scan. Admin operations require `ADMIN_SECRET`, `SUPABASE_SERVICE_ROLE_KEY` and the Cloudinary configuration; these values must remain server-side.
 - Bulk migration uses a local external directory configured by `TILES_LOCAL_PATH` and process-local progress; use it in a persistent local Node server, not a serverless deployment.
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon, ShieldIcon, LayersIcon, GlobeIcon, AwardIcon, PhoneIcon, MailIcon, MapPinIcon } from "@/components/icons";
 import { getThumbnailUrl } from "@/lib/cloudinary-utils";
+import { getTileFormat } from "@/lib/collection-formats";
 import styles from "./Home.module.css";
 
 const SLIDES = [
@@ -29,12 +30,12 @@ function ProductPreview({ tile, size }) {
   const [failed, setFailed] = useState(false);
   const imageAvailable = typeof tile.cloudinary_secure_url === "string" && /^https:\/\/res\.cloudinary\.com\//.test(tile.cloudinary_secure_url);
   const name = (tile.filename || "Tile design").replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ");
-  return <Link href={`/tiles/${size}`} className={styles.product}>
+  return <Link href={getTileFormat(size).href} className={styles.product}>
     <div className={styles.productImage}>
       {!failed && imageAvailable ? <Image src={getThumbnailUrl(tile.cloudinary_secure_url)} alt={name} fill sizes="(max-width: 600px) 45vw, 23vw" onError={() => setFailed(true)} /> : <span>View collection <ArrowRightIcon size={20} /></span>}
     </div>
     <div className={styles.productName}><h3>{name}</h3><ArrowRightIcon size={18} /></div>
-    <p>{size === "12x12" ? "300 × 300 mm" : "400 × 400 mm"}{tile.category ? ` / ${tile.category.replace(/[_-]+/g, " ")}` : ""}</p>
+    <p>{getTileFormat(size).dimensions}{tile.category ? ` / ${tile.category.replace(/[_-]+/g, " ")}` : ""}</p>
   </Link>;
 }
 export default function AnimatedHome({ tiles12x12 = [], tiles16x16 = [], catalogUnavailable = false }) {
@@ -75,9 +76,9 @@ export default function AnimatedHome({ tiles12x12 = [], tiles16x16 = [], catalog
     </section>
     <section id="collections" className={`${styles.section} ${styles.collections}`} aria-labelledby="collections-title">
       <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>The collections</p><h2 id="collections-title">Find your <em>perfect surface.</em></h2></div><p>Two versatile formats.<br />Endless ways to make a space your own.</p></div>
-      <div className={styles.collectionGrid}>{COLLECTIONS.map(collection => <Link key={collection.size} href={`/tiles/${collection.size}`} className={styles.collection}>
+      <div className={styles.collectionGrid}>{COLLECTIONS.map(collection => <Link key={collection.size} href={getTileFormat(collection.size).href} className={styles.collection}>
         <div className={styles.collectionImage}><Image src={collection.image} alt={`${collection.dimensions} tile collection inspiration`} fill sizes="(max-width: 700px) 90vw, 45vw" /><span>{collection.dimensions}</span><div className={styles.collectionArrow}><ArrowRightIcon size={24} /></div></div>
-        <div className={styles.collectionDetails}><span>{collection.size} COLLECTION</span><h3>{collection.title}</h3><p>{collection.text}</p></div>
+        <div className={styles.collectionDetails}><span>{getTileFormat(collection.size).name} COLLECTION</span><h3>{collection.title}</h3><p>{collection.text}</p></div>
       </Link>)}</div>
       {products.length > 0 && <div className={styles.latest}><div className={styles.latestHeading}><h3>A closer look at our tiles</h3><span>Latest designs</span></div><div className={styles.productGrid}>{products.map(({ tile, size }) => <ProductPreview key={`${size}-${tile.id}`} tile={tile} size={size} />)}</div></div>}
       {catalogUnavailable && <p className={styles.catalogNote}>Our live catalogue is temporarily unavailable. <a href="#contact">Contact our team</a> for the latest designs and availability.</p>}

@@ -4,21 +4,21 @@ import { getTiles, getCategoryResult } from '@/lib/tiles';
 export const revalidate = 60;
 
 export const metadata = {
-  title: '16x16 Tiles',
-  description: 'Browse our premium 16x16 tiles collection.',
+  title: '300x300 Tiles',
+  description: 'Browse our premium 300 × 300 mm tiles collection.',
 };
 
-export default async function Tiles16x16Page() {
+export default async function Tiles300x300Page() {
   const [collection, categoryResult] = await Promise.all([
-    getTiles({ size: '16x16' }),
-    getCategoryResult('16x16'),
+    getTiles({ size: '12x12' }),
+    getCategoryResult('12x12'),
   ]);
 
   return (
     <main id="main-content">
       <TileGallery
-        title="16x16 Tiles"
-        size="16x16"
+        title="300x300 Tiles"
+        size="12x12"
         initialTiles={collection.tiles}
         initialTotalCount={collection.totalCount}
         initialError={collection.error}

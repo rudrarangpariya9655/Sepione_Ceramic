@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
+import { getTileFormat } from "@/lib/collection-formats";
 import styles from "./TileModal.module.css";
 
 export default function TileModal({ tile, onClose }) {
@@ -25,7 +26,8 @@ export default function TileModal({ tile, onClose }) {
   if (!tile) return null;
 
   const imageAvailable = typeof tile.image === "string" && /^(\/(?!\/)|https:\/\/res\.cloudinary\.com\/)/.test(tile.image) && failedImage !== tile.image;
-  const message = `Hello Sepione Ceramic, I would like a quote for ${tile.name}${tile.size ? ` (${tile.size})` : ""} from the ${tile.category || "tile"} collection. Please share availability and pricing.`;
+  const dimensions = getTileFormat(tile.size)?.dimensions;
+  const message = `Hello Sepione Ceramic, I would like a quote for ${tile.name}${dimensions ? ` (${dimensions})` : ""} from the ${tile.category || "tile"} collection. Please share availability and pricing.`;
   const quoteUrl = `https://wa.me/919099950773?text=${encodeURIComponent(message)}`;
 
   return (
@@ -50,7 +52,7 @@ export default function TileModal({ tile, onClose }) {
             <p className={styles.badge}>{tile.category || "Tile collection"}</p>
             <p className={styles.description}>Find the right foundation for your space. Ask our team about this design, available finishes and the best fit for your project.</p>
             <dl className={styles.detailsList}>
-              {tile.size && <div className={styles.detailItem}><dt>Size</dt><dd>{tile.size.replace("x", " × ")} inches</dd></div>}
+              {tile.size && <div className={styles.detailItem}><dt>Size</dt><dd>{dimensions || "—"}</dd></div>}
               <div className={styles.detailItem}><dt>Collection</dt><dd>{tile.category || "Tile collection"}</dd></div>
               <div className={styles.detailItem}><dt>Availability</dt><dd>Enquire with our team</dd></div>
             </dl>

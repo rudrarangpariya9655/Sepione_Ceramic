@@ -54,7 +54,7 @@ export default function AnimatedAbout() {
           <p>
             From a welcoming entrance to a busy outdoor space, we help customers find a tile that feels right for their project. Our team supports product selection, packing enquiries, and export requirements from the first conversation.
           </p>
-          <Link href="/tiles/12x12" className={styles.textLink}>Explore our tiles <ArrowRightIcon size={18} /></Link>
+          <Link href="/tiles/300x300" className={styles.textLink}>Explore our tiles <ArrowRightIcon size={18} /></Link>
         </div>
       </section>
 

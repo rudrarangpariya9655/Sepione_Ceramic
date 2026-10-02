@@ -3,6 +3,6 @@ import { revalidatePath } from 'next/cache';
 
 export function revalidateCatalog() {
   revalidatePath('/');
-  revalidatePath('/tiles/12x12');
-  revalidatePath('/tiles/16x16');
+  revalidatePath('/tiles/300x300');
+  revalidatePath('/tiles/400x400');
 }
