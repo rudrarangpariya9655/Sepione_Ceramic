@@ -13,6 +13,7 @@ const LINKS = [
   { href: "/tiles/300x300", label: "300x300 tiles" },
   { href: "/tiles/400x400", label: "400x400 tiles" },
   { href: "/informations", label: "Product information" },
+  { href: "/catalogue", label: "Catalogue" },
 ];
 export default function Navbar() {
   const pathname = usePathname();

@@ -1,0 +1,330 @@
+{
+  "catalogueCount": 29,
+  "totalSizeBytes": 1237833375,
+  "collectionCounts": {
+    "300x300": 13,
+    "400x400": 16
+  },
+  "verification": "All first-page covers rendered and visually inspected. Cover collection sizes and series names match the supplied directories and filenames. Embedded PDF metadata titles can be stale, so display names should derive from filenames. All source and destination SHA-256 hashes match. PDFs are copied without transformation and the supplied originals remain intact. No existing PDFs were found inside website before the copy. All source hashes are unique.",
+  "catalogues": [
+    {
+      "collection": "300x300",
+      "filename": "300x300MM  STEP RISER SERIES.pdf",
+      "sizeBytes": 50714265,
+      "pages": 75,
+      "sha256": "cf140345de0aa90e48d92cdf6c0443a1de3461b247b58013dc476571c9f3b683",
+      "publicUrl": "/catalogue/300x300/300x300MM%20%20STEP%20RISER%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM COOL ROOF SERIES.pdf",
+      "sizeBytes": 13085211,
+      "pages": 25,
+      "sha256": "8b92c68479563db90444b1a2e71c38f73a38dc904f644ba9d2500a94e421e5f0",
+      "publicUrl": "/catalogue/300x300/300x300MM%20COOL%20ROOF%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM GREEN SERIES.pdf",
+      "sizeBytes": 63966123,
+      "pages": 103,
+      "sha256": "39ef7b5117af28b5a782382fc26288b90b92fb081dbd807b87629af167c0f54b",
+      "publicUrl": "/catalogue/300x300/300x300MM%20GREEN%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM ORDINARY SERIES.pdf",
+      "sizeBytes": 5347118,
+      "pages": 18,
+      "sha256": "6cab1b54bf4350e60e2b236157af810902badef2d0dbecc7859c494ee72490d3",
+      "publicUrl": "/catalogue/300x300/300x300MM%20ORDINARY%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PLAIN SERIES VOL-1.pdf",
+      "sizeBytes": 58210025,
+      "pages": 107,
+      "sha256": "274c532a01d9b3b246c9498cb2e7f9c3075100b505f4d3190aa63bfb663b57d9",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PLAIN%20SERIES%20VOL-1.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PLAIN SERIES VOL-2.pdf",
+      "sizeBytes": 41631641,
+      "pages": 86,
+      "sha256": "5e2c83168bb6c870f4e895a386b06d8956ae4a162924d511bfe996eb4c0de691",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PLAIN%20SERIES%20VOL-2.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PUNCH SERIES VOL-1.pdf",
+      "sizeBytes": 63784989,
+      "pages": 107,
+      "sha256": "3f9e5a011fc4ddf6bb7a5c21cb2b5a5b89fd107d198e0dc9d94ee8bada8cc89a",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PUNCH%20SERIES%20VOL-1.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PUNCH SERIES VOL-2.pdf",
+      "sizeBytes": 45680177,
+      "pages": 84,
+      "sha256": "41bb1dc1a34bff0837d5ab93f8b49f4f6ecc88f83246c41e0d593d5d16415bb0",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PUNCH%20SERIES%20VOL-2.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PUNCH SERIES VOL-3.pdf",
+      "sizeBytes": 51804580,
+      "pages": 105,
+      "sha256": "cd816294869ba990b952f0c8bab4a45733dc419cf9e9717351aeee7f9624091c",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PUNCH%20SERIES%20VOL-3.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PUNCH SERIES VOL-4.pdf",
+      "sizeBytes": 65593254,
+      "pages": 136,
+      "sha256": "a633782a6871a4d3707d87704e8e4f4faf521153db9e419ad01f69136dfc0454",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PUNCH%20SERIES%20VOL-4.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM PUNCH SERIES VOL-5.pdf",
+      "sizeBytes": 45830587,
+      "pages": 95,
+      "sha256": "c13f721268a7b2538c710ea969dba7363f175810a97a3f170fa5e9efd0ade08a",
+      "publicUrl": "/catalogue/300x300/300x300MM%20PUNCH%20SERIES%20VOL-5.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM ROCK SERIES.pdf",
+      "sizeBytes": 9524039,
+      "pages": 19,
+      "sha256": "6c39e65d946998bb6cb548f3ab9a9e67952202c19412532289d4100ca8c6df7f",
+      "publicUrl": "/catalogue/300x300/300x300MM%20ROCK%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "300x300",
+      "filename": "300x300MM RUSTIC SERIES.pdf",
+      "sizeBytes": 38521739,
+      "pages": 80,
+      "sha256": "a155c207afe20c4556f684c21d4da17396fb2a129a9c93fd9a1ed410861aef2f",
+      "publicUrl": "/catalogue/300x300/300x300MM%20RUSTIC%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM NEW COLLECTION-2026.pdf",
+      "sizeBytes": 17050196,
+      "pages": 22,
+      "sha256": "3d945017cc1528e01f09b894ebe5fe4527e0f62dd7d34496f5208f0bbfd6e71a",
+      "publicUrl": "/catalogue/400x400/400X400MM%20NEW%20COLLECTION-2026.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PLAIN SERIES VOL-1.pdf",
+      "sizeBytes": 56110557,
+      "pages": 91,
+      "sha256": "06c1ad74999dddeaa6bc020c7d89fed1443cd3e5015ef46b28da3dcc19d18d62",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PLAIN%20SERIES%20VOL-1.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PLAIN SERIES VOL-2.pdf",
+      "sizeBytes": 46826349,
+      "pages": 102,
+      "sha256": "f686d1d033661743b918618f156283cae599f81cf250f57d797f64be3bce33e4",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PLAIN%20SERIES%20VOL-2.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PLAIN SERIES VOL-3.pdf",
+      "sizeBytes": 52072831,
+      "pages": 116,
+      "sha256": "9ebdf340103a11ff44fa1c0fb1b54490fe7d55c981a46d213c8ed3ba0c21507c",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PLAIN%20SERIES%20VOL-3.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES VOL-1.pdf",
+      "sizeBytes": 61965697,
+      "pages": 93,
+      "sha256": "4d34b981f8fa8c65082c268ab43cabdf7fffbc92df499527b11d4d2d5facd1cc",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES%20VOL-1.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES VOL-2.pdf",
+      "sizeBytes": 61150131,
+      "pages": 106,
+      "sha256": "e1c4d8f4845e745a73db07609fe5759242ee348d10250fb37e0e1ae41f2baac8",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES%20VOL-2.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES VOL-3.pdf",
+      "sizeBytes": 45677461,
+      "pages": 92,
+      "sha256": "9803b019d5d3192073f080c53d30c926c70ed2b4229d50a61cfc850904308724",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES%20VOL-3.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES VOL-6.pdf",
+      "sizeBytes": 43302605,
+      "pages": 61,
+      "sha256": "a979aa5a2a857b507e6126d017346afa5a1d71868be462ee75f62532595d9168",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES%20VOL-6.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES-VOL-4.pdf",
+      "sizeBytes": 49460931,
+      "pages": 80,
+      "sha256": "47b80bef4c2b9818a5fe047e48b97e570ae88bf80b9b771313b855026d222257",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES-VOL-4.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM PUNCH SERIES-VOL-5.pdf",
+      "sizeBytes": 47386928,
+      "pages": 95,
+      "sha256": "488956620f6b0562f71561e444d4d72aff70b428dfe091b5dfcee7717c3b825d",
+      "publicUrl": "/catalogue/400x400/400X400MM%20PUNCH%20SERIES-VOL-5.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM ROCK MARBLE SERIES.pdf",
+      "sizeBytes": 10754502,
+      "pages": 18,
+      "sha256": "3a8feeb5055badf20cc093f29ca6a17ed31c751f5a50d8e3d4676c69dc2a3ecf",
+      "publicUrl": "/catalogue/400x400/400X400MM%20ROCK%20MARBLE%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM ROCK SERIES.pdf",
+      "sizeBytes": 24702434,
+      "pages": 36,
+      "sha256": "7f118cce9e4ce8ddf1d26c259d0cace5f84eee86236af917ac62ef9146d44d03",
+      "publicUrl": "/catalogue/400x400/400X400MM%20ROCK%20SERIES.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM RUSTIC SERIES-VOL-1.pdf",
+      "sizeBytes": 28262430,
+      "pages": 43,
+      "sha256": "015303565eaa8f55015542e906f082909d09d493bb5d2b56b23cb150fd05a24b",
+      "publicUrl": "/catalogue/400x400/400X400MM%20RUSTIC%20SERIES-VOL-1.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM RUSTIC SERIES-VOL-2.pdf",
+      "sizeBytes": 69514085,
+      "pages": 110,
+      "sha256": "f391e262c915a258e68d51c09d267405551cbe609fb4e33c0f713c7bdc757681",
+      "publicUrl": "/catalogue/400x400/400X400MM%20RUSTIC%20SERIES-VOL-2.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM RUSTIC SERIES-VOL-3.pdf",
+      "sizeBytes": 26005548,
+      "pages": 56,
+      "sha256": "2703b6f9b0d4edf629099a98b17c5c4d5d986bb77de7dd7af4c9852057f41033",
+      "publicUrl": "/catalogue/400x400/400X400MM%20RUSTIC%20SERIES-VOL-3.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    },
+    {
+      "collection": "400x400",
+      "filename": "400X400MM RUSTIC SERIES-VOL-4.pdf",
+      "sizeBytes": 43896942,
+      "pages": 67,
+      "sha256": "ee6ee73ae31e7c8cce52604a68fa9308344a2895b38849f81b11240d5a953a68",
+      "publicUrl": "/catalogue/400x400/400X400MM%20RUSTIC%20SERIES-VOL-4.pdf",
+      "coverVerified": true,
+      "signature": "%PDF-1.7",
+      "encrypted": false
+    }
+  ]
+}

@@ -157,6 +157,23 @@ export function ClockIcon(props) {
 
 /* ------------------------------------------------------------------- ui */
 
+export function DocumentIcon(props) {
+  return (
+    <Svg {...props}>
+      <path d="M13.5 2.75H6.25a1.5 1.5 0 0 0-1.5 1.5v15.5a1.5 1.5 0 0 0 1.5 1.5h11.5a1.5 1.5 0 0 0 1.5-1.5V8.5L13.5 2.75Z" />
+      <path d="M13.5 2.75V8.5h5.75M8.25 12.5h7.5M8.25 16.5h5" />
+    </Svg>
+  );
+}
+
+export function DownloadIcon(props) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3.25v11.5m-4-4 4 4 4-4M4.25 15.75v3.5a1.5 1.5 0 0 0 1.5 1.5h12.5a1.5 1.5 0 0 0 1.5-1.5v-3.5" />
+    </Svg>
+  );
+}
+
 export function ArrowRightIcon(props) {
   return (
     <Svg {...props}>

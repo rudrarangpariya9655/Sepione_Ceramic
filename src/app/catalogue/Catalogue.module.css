@@ -1,0 +1,13 @@
+.list { list-style: none; padding: 0; }
+.card { display: flex; flex-direction: column; min-width: 0; }
+.card h3 { overflow-wrap: anywhere; }
+.cardHeading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.collection { color: var(--color-on-surface-variant); font-size: 11px; }
+.fileDetails { font-size: 13px; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: auto; padding-top: 24px; font-size: 13px; }
+.download { margin-left: auto; }
+
+@media (max-width: 640px) {
+  .actions { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .download { margin-left: 0; }
+}

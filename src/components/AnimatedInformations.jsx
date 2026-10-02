@@ -32,17 +32,16 @@ export default function AnimatedInformations() {
         <h2 id="formats-title" className={styles.sectionTitle}>Two sizes. Room for possibility.</h2>
         <div className={styles.tableScroll} role="region" aria-label="Collection coverage and packing specifications table" tabIndex={0}>
           <table className={styles.table}>
-            <caption>Coverage per tile and per box for each metric collection.</caption>
+            <caption>Pieces and coverage per box for each metric collection.</caption>
             <thead>
-              <tr><th scope="col">Collection</th><th scope="col">Area / Tile (m²)</th><th scope="col">Area / Box (m²)</th><th scope="col">Per Box Weight</th><th scope="col">Thickness</th></tr>
+              <tr><th scope="col">Collection</th><th scope="col">Pieces per Box</th><th scope="col">Area / Box (m²)</th><th scope="col">Per Box Weight</th><th scope="col">Thickness</th></tr>
             </thead>
             <tbody>
               {COLLECTION_FORMATS.map((format) => {
-                const squareMetres = (format.width * format.height) / 1000000;
                 return (
                   <tr key={format.href}>
                     <th scope="row"><Link className={styles.textLink} href={format.href}>{format.name}<ArrowRightIcon size={16} /></Link></th>
-                    <td>{squareMetres.toFixed(2)}</td>
+                    <td>{format.piecesPerBox}</td>
                     <td>{format.areaPerBox.toFixed(2)}</td>
                     <td>{format.weightPerBoxKg} kg approx.</td>
                     <td>{format.thicknessMm} mm approx.</td>
@@ -52,7 +51,7 @@ export default function AnimatedInformations() {
             </tbody>
           </table>
         </div>
-        <p className={styles.note}>Collection names identify the metric format. Area per tile is calculated from the dimensions; area per box is 0.72 m² for 300x300 and 0.80 m² for 400x400. Coverage excludes joints, cuts, and wastage.</p>
+        <p className={styles.note}>Collection names identify the metric format. Each box contains 8 pieces for 300x300 and 5 pieces for 400x400; area per box is 0.72 m² and 0.80 m² respectively. Coverage excludes joints, cuts, and wastage.</p>
       </section>
 
       <section id="packing" className={styles.section} aria-labelledby="packing-title">

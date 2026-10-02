@@ -13,12 +13,12 @@ Implemented directly in the existing project. No theme, font, image, hero, anima
 
 Removed the entire Size column and replaced the former square-foot per-tile column with Area / Box (m²). The table now shows:
 
-| Collection | Area / Tile (m²) | Area / Box (m²) | Per Box Weight | Thickness |
+| Collection | Pieces per Box | Area / Box (m²) | Per Box Weight | Thickness |
 | --- | ---: | ---: | --- | --- |
-| 300x300 | 0.09 | **0.72** | 12.5 kg approx. | 9 mm approx. |
-| 400x400 | 0.16 | **0.80** | 18.5 kg approx. | 11.5 mm approx. |
+| 300x300 | 8 | **0.72** | 12.5 kg approx. | 9 mm approx. |
+| 400x400 | 5 | **0.80** | 18.5 kg approx. | 11.5 mm approx. |
 
-The requested 0.72 / 0.80 values are box coverage, kept separate from the mathematically correct per-tile areas. Captions and notes now explain metric collections and box coverage. The contextual Tile → Box change applies to that packaging coverage column; product descriptions and the genuine per-tile measurement retain “tile.” Other packing information already uses boxes and needs no replacement.
+The latest correction replaces the second column's per-tile area with Pieces per Box: 8 for 300x300 and 5 for 400x400. The requested 0.72 / 0.80 m² box coverage values remain unchanged and agree with the piece counts and metric dimensions. Captions and notes now explain metric collections, pieces, and box coverage. Product descriptions retain “tile.” Other packing information already uses boxes and needs no replacement.
 
 The follow-up adds Per Box Weight and Thickness as proper table columns, using exactly the requested values above. Size remains removed and coverage values are unchanged. The table retains its colors, borders, typography, links, accessible headers, and existing desktop/mobile cell padding. Five equal columns and an 800px minimum table width keep the text readable; the existing overflow container scrolls horizontally at 375/768px while the overall page fits the viewport. At 1024/1440px, the entire table fits without horizontal scrolling.
 
@@ -28,12 +28,12 @@ Paths below are relative to this `website` repository:
 
 | File | Change |
 | --- | --- |
-| `src/lib/collection-formats.js` | New shared mapping for metric labels, routes, dimensions, box coverage, approximate box weight/thickness, and import-status presentation. |
+| `src/lib/collection-formats.js` | New shared mapping for metric labels, routes, dimensions, pieces per box, box coverage, approximate box weight/thickness, and import-status presentation. |
 | `src/components/Navbar.jsx` | Metric labels and links in both navigation menus. |
 | `src/components/Footer.jsx` | Metric collection destinations. |
 | `src/components/AnimatedHome.jsx` | Metric collection labels and destinations for collections/product previews. |
 | `src/components/AnimatedAbout.jsx` | Updated collection destination. |
-| `src/components/AnimatedInformations.jsx` | Five-column table, metric collection labels, box areas, approximate weights/thicknesses, caption and note. |
+| `src/components/AnimatedInformations.jsx` | Five-column table, metric collection labels, pieces per box, box areas, approximate weights/thicknesses, caption and note. |
 | `src/components/SecondaryPages.module.css` | Table column sizing and mobile cell padding only. |
 | `src/components/TileCard.jsx` | Metric size badges. |
 | `src/components/TileModal.jsx` | Metric product dimensions and quote text. |

@@ -1,8 +1,8 @@
 // Keep storage keys compatible with existing Supabase records and image paths.
 // Public labels and routes use metric collection names.
 export const COLLECTION_FORMATS = [
-  { storageSize: '12x12', name: '300x300', dimensions: '300 × 300 mm', width: 300, height: 300, areaPerBox: 0.72, weightPerBoxKg: 12.5, thicknessMm: 9, href: '/tiles/300x300' },
-  { storageSize: '16x16', name: '400x400', dimensions: '400 × 400 mm', width: 400, height: 400, areaPerBox: 0.80, weightPerBoxKg: 18.5, thicknessMm: 11.5, href: '/tiles/400x400' },
+  { storageSize: '12x12', name: '300x300', dimensions: '300 × 300 mm', width: 300, height: 300, piecesPerBox: 8, areaPerBox: 0.72, weightPerBoxKg: 12.5, thicknessMm: 9, href: '/tiles/300x300' },
+  { storageSize: '16x16', name: '400x400', dimensions: '400 × 400 mm', width: 400, height: 400, piecesPerBox: 5, areaPerBox: 0.80, weightPerBoxKg: 18.5, thicknessMm: 11.5, href: '/tiles/400x400' },
 ];
 
 export function getTileFormat(size) {
